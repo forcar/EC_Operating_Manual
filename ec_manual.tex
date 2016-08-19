@@ -1,0 +1,1205 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tocloft}                        %Modify table of contents (toc)      
+\renewcommand{\contentsname}{\hfill\bfseries\Large Contents\hfill}   %center toc title
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}   %put .... in toc
+\usepackage{url}                            %put websites in paper
+\usepackage[margin=0.8in]{geometry}         %adjust margins
+\usepackage{graphicx}                       %use images
+\graphicspath{ {./Figures/} } %where to find files
+\usepackage[outdir=./Figures/]{epstopdf}
+\usepackage{sectsty}                        %center section titles
+%\allsectionsfont{\centering}
+\usepackage{chngcntr}                       %Start Figure counting according to section
+\counterwithin{figure}{section}             %where to start that counter
+\usepackage[section]{placeins}              %able to use Floatbarrier
+\usepackage{caption}
+\usepackage{subcaption}                     %subfigures allowed
+\usepackage{amsmath}                        %math stuff
+\usepackage{verbatim}                        %block commenting
+\usepackage{color} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} % modify footnotes to symbols
+
+\begin{document}
+
+\title{Electromagnetic Calorimeter System Operations Manual}
+
+\vskip 0.5cm
+
+\author{L.C Smith, Jefferson Laboratory\\[0.2ex]
+{\it ec\_manual.tex -- v1.1}}
+
+\date \today
+%
+\maketitle
+
+\begin{abstract}
+This document provides an overview of the CLAS12 Electromagnetic Calorimeter (ECAL) System and serves 
+as an Operations Manual for the detector. Instructions are provided for shift workers related to 
+basic steps of operating and monitoring the HV controls, monitoring the detector system and 
+responding to alarms, and knowing when to contact the on-call personnel. More complete details 
+are also provided for ECAL system experts regarding the channel mapping to the readout electronics, 
+the cable connections and routing in Hall~B, higher-order high voltage system operations, and 
+detector servicing. This document also provides references to the available ECAL documentation and 
+a list of personnel authorized to perform ECAL system repairs and modify system settings.
+\end{abstract}
+
+\thispagestyle{empty}
+
+\clearpage
+
+\vfil
+\eject
+
+\tableofcontents
+
+\vfil
+\eject
+
+\section{EC Overview}
+\label{intro}
+
+The CLAS12 ECAL package includes the legacy CLAS6 electromagnetic calorimeters (EC) and new pre-shower calorimeter (PCAL) modules installed just upstream of EC.  Six sectors of ECAL in CLAS12 will be used primarily for identification of electrons, photons (including $\pi^0\rightarrow 2\gamma$ decays), and neutrons.Both PCAL and EC are triangular-shaped sampling calorimeters. The calorimeter design uses a lead-scintillator sandwich consisting of alternating layers of 1-cm thick scintillators and ~2 mm thick lead sheets. At 11 GeV the total thickness corresponds to about 21 radiation lengths. Scintillator layers are grouped into three stereo views, called U, V, and W,  which are readout using photomultiplier tubes (PMT).  Specifications for each calorimeter are outlined below. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{fc-pcal-ecal}
+  \vspace{2mm}
+\caption{Photographs of the EC (left) and PCAL (right) calorimeter modules installed on the Forward
+    Carriage in Hall B.  The Forward Carriage is roughly 10~m in diameter.}
+  \label{fwd_car}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|} \hline
+{\bf Parameter}        & {\bf Design Value} \\ \hline \hline
+{\bf PCAL}         &              \\ \hline 
+Calorimeter type   & Sampling, lead-scintillator \\ \hline
+Number of modules  & 6 \\ \hline
+Module shape and dimensions & Triangle, base 394.3 cm height 385.3 cm \\ \hline
+Total coverage area      &  45 m$^2$ \\ \hline
+Distance from Target & 7 m \\ \hline
+Angular coverage   & $\theta$: 5$^\circ$ $\to$ 35$^\circ$,$\phi$: 50\% at 5$^\circ$ $\to$ 85\% at 35$^\circ$ \\ \hline
+Lead sheets & 2.2 mm thick (two pieces) \\ \hline
+Number of scintillator layers & 15 per module \\ \hline
+Number of lead sheets  & 14 per module \\ \hline
+Number of stereo readout views & 3 (5 scintillator layers per view) \\ \hline
+Scintillator material & Extruded polystyrene w/ 2 fiber holes\\ \hline
+Scintillator core & Dow Styron 663 W \\ \hline
+Scintillator cladding & Polystyrene with 12$\%$ TiO2 (0.25 mm) \\ \hline
+Scintillator strip dimensions & 1 x 4.5 x 2.5-394(U)432(V,W) cm \\ \hline
+Scintillator readout & WLS fibers (Kuraray Y-11 1mm DC) \\ \hline
+Scintillators/module & U:84 V:77 W:77 \\ \hline
+Scintillators readout/module & U:68 V:62 W:62 \\ \hline
+Number of WLS fibers & 4 fibers/strip 1428/module \\ \hline
+Number of readout channels & 192 per module \\ \hline
+Readout PMT & Hamamatsu R6095 \\ \hline
+Light yield & 11-12 photo e-/MeV \\ \hline 
+\end{tabular}
+\end{center}
+\caption{PCAL technical design parameters.} 
+\end{table}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|} \hline
+{\bf Parameter}        & {\bf Design Value} \\ \hline \hline
+{\bf EC}         &              \\ \hline
+Calorimeter type   & Sampling, lead-scintillator \\ \hline
+Number of modules  & 6 \\ \hline
+Module shape and dimensions & Triangle, base 420 cm height 388.8 cm \\ \hline
+Total Coverage Area      & 49 m$^2$ \\ \hline
+Distance from Target & 7.21723 m (target center to upstream face) \\ \hline
+Angular Coverage   & $\theta$: 5$^\circ$ $\to$ 35$^\circ$,$\phi$: 50\% at 5$^\circ$ $\to$ 85\% at 35$^\circ$ \\ \hline
+Lead sheets & 2.387 mm thick (single piece)\\ \hline
+Number of scintillator layers & 39 per module (15 inner, 24 outer) \\ \hline
+Number of lead sheets  & 38 per module \\ \hline
+Number of stereo readout views & 3 (5 scintillator layers per view) \\ \hline
+Scintillator material & BC-412\\ \hline
+Scintillator cladding & None. Teflon film (0.00762 cm) between layers. \\ \hline
+Scintillator strip dimensions & 1 x 10.0 x 15-420 cm \\ \hline
+Scintillator readout & BCF98 3mm cladded optical fiber \\ \hline
+Scintillators/module & U:36 V:36 W:36 \\ \hline
+Number of fibers & 22 fibers/PMT, 110(176) per inner(outer) view \\ \hline
+Number of readout channels & 216 per module \\ \hline
+Readout PMTs & Phillips XP2262 and EMI 9954 \\ \hline
+Light yield & 3-4 photo e-/MeV \\ \hline \hline
+{\bf Expected Performance} & {\bf Value} \\ \hline
+Energy resolution & 10$\%/\sqrt E$ (ECAL+PCAL) \\ \hline
+Position resolution & 0.5 cm \\ \hline
+Time resolution & 500 ps \\ \hline
+
+\end{tabular}
+\end{center}
+\caption{EC technical design parameters.} 
+\label{tab:ftofproperties}
+\end{table}
+
+\newpage
+
+A block diagram of the readout electronics for the ECAL system is shown in 
+Figure~\ref{readout-elec}. Signal cables are routed from the PMT locations on the calorimeter
+modules to UVA 122B splitter panels located on the front of the electronics racks. The cable
+connections are BNC at the PMT anode and LEMO at the splitter.  From the splitter, patch cables
+are routed to VME DSC2 leading edge discriminators (for pulse timing measurements) and JLAB 250~MHz VME Flash
+ADCs (FADC250) (for pulse amplitude measurements.)  The TDCs are CAEN VME 1190A with 100~ps LSB resolution.
+The FADC250 and DSC2/TDC modules are housed in separate VXS crates.  The FADC250/VXS crate contains the
+Virtual Trigger Processor (VTP) in a special switched slot which will be used to process energy and hit data for
+trigger decision making.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{readout-electronics}
+  \vspace{2mm}
+  \caption{Schematic of signal readout electronics for ECAL system.  Shown are the cable and split ratios for the EC
+    PMTs.  The PCAL case is similar but uses different split ratios.  Not shown are HV connections.  For EC transition patch cables were used at either end of the RG-8 signal cable, which are not shown here.
+  }
+  \label{readout-elec} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The electronics for each sector are located behind the detectors on the three levels of the Forward 
+Carriage as follows:
+
+\vskip 0.5cm
+
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
+\item ECAL S1: FC Level 2 South (Beam left)
+\item ECAL S2: FC Level 3 South (Beam left)
+\item ECAL S3: FC Level 3 North (Beam right)
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
+\item ECAL S4: FC Level 2 North (Beam right)
+\item ECAL S5: FC Level 1 North (Beam right)
+\item ECAL S6: FC Level 1 South (Beam left)
+\end{itemize}
+\end{minipage}
+
+\vskip 0.5cm
+
+Note that ``South'' refers to beam left and ``North'' to beam right (closer to the Pie Tower).
+
+Figure~\ref{fc-layout-1} shows the Forward Carriage rack locations for the ECAL VME electronics and signal cable patch 
+panels.  Note the rack layout for beam left is a mirror image of the layout for beam right.  Also Level 1 rack layout
+is different due to cable routing (discussed below).
+
+The HV power supplies for all PMTs in each ECAL sector are either CAEN 1527LC mainframes or CAEN 4527 mainframes 
+outfitted with negative polarity 24-channel A1535N cards which fit into slots at the rear of each
+mainframe. The HV mainframes that power the PCAL 
+system are actually shared between the FTOF and the PCAL. The FTOF boards occupy slots 0 to 7 of each 
+mainframe and the PCAL boards occupy slots 8 to 15 of each mainframe. These supplies are named HVFTOFn, 
+n=1$\to$6 (i.e. HVFTOF1 $\to$ HVFTOF 6). The HV mainframes for the EC modules are named HVECALn (n=1$\to$6).
+Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of the EC sectors on the Forward Carriage.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{FC-EC-rack-layout}
+  \vspace{2mm}
+  \caption{Schematic layout of the ECAL VME electronics, signal cable splitters, and HV power 
+  supplies in the electronics racks on each of the three levels of the Forward Carriage. The rack names on each level (c1, c2,
+  and c3) are numbered 1 through 10.}
+  \label{fc-layout-1} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{Sector6-electronics}
+  \vspace{2mm}
+  \caption{Photograph of racks C1-6 through C1-10 (Sector 6) during cable installation.  The rack with no cables installed (C1-8)
+  houses four EC splitter panels (top), the FADC250 VXS crate (middle) and DSC2/TDC VXS crate (bottom).  The CAEN HV mainframe $\it{hvecal6}$ is at far left in rack C1-6, and the PCAL/FTOF mainframe $\it{hvftof6}$ is to the right in rack C1-7.}
+  \label{fc-layout-2} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+HV cable connections to the rear of the mainframes are made using a JLAB built transition/distribution box with 48 SHV input connectors and two output cables each terminated with a 24-pin connector designed to mate with the receptacle on the A1535N cards (see Figure~\ref{fc-layout-3}).
+
+Both signal and HV cables from the ECAL system pass under the floor gratings on Levels 2 and 3 and for Level 1
+cables are routed through openings in the ceiling.  For EC RG-8 signal cables the connection to BNC-Lemo transition cables
+are made under the grating near the racks containing the EC splitter panels (Figure~\ref{fc-layout-3}.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{Cable-routing}
+  \vspace{2mm}
+  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of EC HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
+  \label{fc-layout-3} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\clearpage
+
+\vfil
+\eject
+
+
+\section{Information for Shift Workers}
+
+\subsection{Shift Worker Responsibilities}
+
+The shift worker in the Hall~B Counting House has five responsibilities with regard to the ECAL
+system:
+
+\begin{enumerate}
+\item Updating the Hall~B electronic logbook with records of problems or system conditions (see 
+Section~\ref{logbook}).
+
+\item Contacting ECAL system on-called personnel for any problems that are discovered (see 
+Section~\ref{contact}).
+
+\item Responding to ECAL system alarms from the Hall~B alarm handler (see Section~\ref{alarms}).
+
+\item Turning on or off the high voltage for the ECAL system using the HV control interface (see 
+Section~\ref{hv-control}).
+
+\item Monitoring the hit occupancy scalers for the system (see Section~\ref{monitoring}).
+\end{enumerate}
+
+\subsubsection{Updating the Logbook}
+\label{logbook}
+
+The electronic logbook (or e-log)~\cite{e-log} is set up to run on a specified terminal in the 
+Hall~B Counting House. Shift workers are responsible for keeping an up-to-date and accurate record
+of any problems or issues concerning the EC system. For any questions regarding the logbook, its
+usage, or on what is considered to be a ``logbook worthy'' entry, consult the assigned shift leader.
+
+Note the shift worker should follow all posted or communicated instructions about entering ECAL
+scaler screens into the e-log. This is typically done once per 8-hour shift as directed on the
+shift checklist.
+
+\subsubsection{Contacting ECAL System Personnel}
+\label{contact}
+
+As a general rule, shift workers should spend no more than 10 to 15 minutes attempting to solve
+any problem that arises with the EC system. At that point they should contact the assigned 
+ECAL on-call worker to either provide advice on how to proceed or to address the problem.
+
+This document is divided into a section for shift workers and EC system experts. However, only 
+ECAL system experts (as listed in Section~\ref{personnel}) are authorized to make changes to the ECAL
+parameter settings, to work on the hardware or electronics, or to modify the DAQ system 
+software. This division between shift worker responsibilities and expert responsibilities is
+essential to maintain in order to protect and safeguard the equipment, to ensure data collection
+is as efficient as possible, and to minimize down time. If the shift worker has any question 
+regarding how to proceed when an issue arises, the shift leader should be consulted.
+
+\subsubsection{Hall~B Alarm Handler}
+\label{alarms}
+
+The BEAST alarm handler system running in the Counting House monitors the entire Hall~B Slow Controls
+system. This include HV and LV systems, gas systems, torus and solenoid controls, subsystem
+environment controls (e.g. temperature, humidity), and pulser calibration systems (among several
+others). The system runs on a dedicated terminal in the Counting House. One of the main responsibilities
+of the shift worker is to respond to alarms from this system, either by taking corrective action
+or contacting the appropriate on-call personnel. Instructions and details on the alarm handler for Hall~B
+are given in Ref.~\cite{beast}.
+
+For the ECAL system, the only element of the system monitored by the alarm handler is the HV system.
+Any time a channel trips off an alarm will sound. The alarm handler will identify the specific
+channel (or channels) that have tripped. These channels can be reset either through the alarm handler
+or through the nominal ECAL HV control screens. These channels should be reset only after ensuring
+that whatever condition caused the trip (e.g. bad beam conditions) has been addressed.
+
+\subsection{High Voltage Controls}
+\label{hv-control}
+
+Control of the ECAL HV mainframes is through the Hall~B CS-Studio suite, which is an Eclipse-based collection 
+of tools used as an interface to the EPICS Slow Control system. To start the user interface on any 
+terminal in the Hall~B Counting House, enter the command {\it clascss}. Fig.~\ref{ecal-screen1} 
+shows the control panel that is launched.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 6in, keepaspectratio = true]{cssclas-detector-interface}
+  \vspace{2mm}
+  \caption{Left: The CS-Studio interface used for the Slow Controls of the CLAS12 detectors and subsystems.  ECAL HV
+    controls may be accessed through either the ``ECAL'' button under Detectors or the ``HV'' button under Subsystems.
+  Right: Detector based ECAL HV display and control interface. For each sector the outermost triangle represents the PCAL, while
+  ECinner and ECouter are the middle and innermost triangles respectively. Individual PMT HV channel controls
+  are indicated by small circles. HV channel status is indicated by the colormap at lower right.  An entire sector
+  of PMTs (EC+PCAL) may be turned on and off by clicking the sector number at the apex of the triangle.}
+  \label{ecal-screen}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+HV controls are presented in two ways: either mapped to the physical detector or mapped to the HV mainframe
+crate,slot,channel
+To bring up the ECAL HV controls, click on the ``ECAL'' button on the subsystem list. This pops up a 
+sub-menu of all Slow Controls subprograms for the ECAL system, of which there is only one, ``ECAL HV'' 
+Clicking on this option brings up the HV control interface for the ECAL system as shown in
+Fig.~\ref{ecal-screen}. This interface allows for HV operations at a number of functionality levels:
+
+\begin{itemize}
+\item All channels in the full ECAL system
+\item All channels in a single ECAL sector (panel-1a, panel-1b, panel-2)
+\item All channels in a single sector for a given panel
+\item The left PMTs or the right PMTs in a given sector and panel
+\item A single PMT in the ECAL system
+\end{itemize}
+
+shows the control panel that is launched.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{ecal-hv-screen-5}
+  \vspace{2mm}
+  \caption{Detail of Fig.~\ref{ecal-screen} which shows sector 1
+    has been selected, activating the pop-up option menu.  Individual controls for modules are
+    labeled ``ECAL'', ``PCAL'' and for individual views ``U,V,W'' which provide similar pop-up menus.
+    Control of individual PMTs within a view is possible by clicking the circular elements.  }
+  \label{ecal-screen2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For the shift worker the most common operations are:
+
+\begin{enumerate}
+\item To turn the HV for all system PMTs on or off. This is accomplished by clicking the button in the 
+upper right corner ``ALL ON/OFF''. This pops up a sub-menu with the relevant options.
+\item To turn individual PMTs on or off. This is accomplished by clicking on the circle representing 
+the channel of interest. This brings up a control screen for the channel of interest as shown in
+Fig.~\ref{ftof-screen4}. Clicking on the ``Pw'' button toggles the channel HV on and off.
+\item To turn the HV for all PMTs in a single sector on or off. This is accomplished by clicking on 
+the sector button in the upper right corner (S1 $\to$ S6) (see Fig.~\ref{ftof-screen3}). This pops up a 
+sub-menu with the relevant options.
+\item To turn the HV for all PMTs in a given panel and sector on or off. This is accomplished by
+clicking on the Sector button (Sector~1 $\to$ Sector~6) next to the panel of interest. This pops
+up a sub-menu with the relevant options as shown in Fig.~\ref{ftof-screen5}.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{0.5cm}
+\begin{picture}(30,50) 
+%\put(85,150)
+%{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-4.pdf}}}
+\end{picture} 
+\caption{FTOF HV display for single channel parameters.}
+\label{ftof-screen4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5.8cm}
+\begin{picture}(30,50) 
+%\put(85,230)
+%{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-5.pdf}}}
+\end{picture} 
+\caption{FTOF HV display and control interface to open channel controls for a given panel and sector.}
+\label{ftof-screen5}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If the ``Open Channel Controls'' option shown in Fig.~\ref{ftof-screen5} is selected, a ``novice'' 
+window is opened as shown in Fig.~\ref{ftof-screen6}. This window shows the monitored channel voltage 
+and current ($V_{mon}$ (V) and $I_{mon}$ ($\mu$A)), the channel status (OFF, ON), and the set channel
+voltage and current ($V_{set}$ (V) and $I_{set}$ ($\mu$A)). If desired, shift workers can toggle the
+HV settings for single channels on or off through this interface.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{9.0cm}
+\begin{picture}(30,50) 
+%\put(105,-15)
+%{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{ftof-hv-screen-6.pdf}}}
+\end{picture} 
+\caption{FTOF ``novice'' channel controls screen.}
+\label{ftof-screen6}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In the upper left corner of this ``Channel Controls'' window is a button marked ``expert'' that
+brings up the window shown in Fig.~\ref{ftof-screen7}. This allows changes to the system settings
+for the maximum channel current, maximum channel voltage setting, and the channel HV ramp up and 
+ramp down rates. Clicking on the ``novice'' button in the upper left corner toggles between the 
+expert and novice screens. \textcolor{red}{The expert screen should only be used by the list of 
+authorized FTOF personnel given in Section~\ref{personnel}.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{7.5cm}
+\begin{picture}(30,50) 
+%\put(65,265)
+%{\hbox{\includegraphics[width=0.57\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-7.pdf}}}
+\end{picture} 
+\caption{FTOF ``expert'' channel controls screen.}
+\label{ftof-screen7}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The HV Control Interface screen (see Fig.~\ref{ftof-screen3}) also provides a color key to indicate 
+the channel status:
+
+\begin{itemize}
+\item HV off - no highlight color (channel color dark green)
+\item HV on - bright green
+\item HV ramping up or ramping down - orange
+\item HV trip - red
+\item Communication problem - yellow
+\item Undefined channel status - magenta
+\end{itemize}
+
+If there is a communication error present, which typically appears for all PMTs in a given sector,
+the usual cause is an issue of communication between the HV control interface and the IOC computer 
+that interfaces with the HV mainframe or between the IOC computer and the HV mainframe. To reboot the
+IOC for a given sector, click on the ``IOCs'' button in the upper left corner of the channel control 
+screen (see Fig.~\ref{ftof-screen3}) and then click on the ``Reboot'' button for the sector of 
+interest.
+
+\subsection{Detector Monitoring}
+\label{monitoring}
+
+A number of monitoring tools to study the performance of the FTOF detector system have been
+prepared. One of the most basic and powerful tools, however, is a simple display of the
+system scalers. A tool to monitor and display the scalers for the Forward Carriage detectors
+is called {\it fcmon}. To launch this program from any Counting House computer, type: {\it fcmon}.
+This brings up the window as shown in Fig.~\ref{fcmon1}(left). This tool enables display of
+the scalers from the FTOF discriminators and FADCs for each of the six CLAS12 sectors. To
+use the interface, click on the FTOF sector of interest in the left column, click on FTOF in
+the center column, and then click on the source of the scalers in the third column. To bring
+up the scaler display screens, select ``Scalers'' under the ``Monitor'' drop down menu as
+shown in Fig.~\ref{fcmon1}(right).
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{2.5cm}
+\begin{picture}(30,50) 
+%\put(-15,-155)
+%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642]{fcmon1.pdf}}}
+%\put(155,-155)
+%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642]{fcmon2.pdf}}}
+\end{picture} 
+\caption{Forward Carriage scaler display program {\it fcmon}. (Left) Main screen. (Right) Main screen
+with access to scaler display window.}
+\label{fcmon1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The FTOF scalers can be monitored in one of three different ways by selecting the appropriate tab
+at the top of the scaler display screen (see Fig.~\ref{fcmon2}). These three modes include:
+
+\begin{itemize}
+\item Mode 1 (Slots): Scaler rate values (Hz) displayed for each FTOF channel
+\item Mode 2 (Rates): Scaler rate values (Hz) plotted for each FTOF channel
+\item Mode 3 (Stripcharts): Scaler rate values (Hz) plotted as a strip chart (rate vs. time)
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{18.5cm}
+\begin{picture}(30,50) 
+%\put(105,620)
+%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon3.pdf}}}
+%\put(105,413)
+%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon4.pdf}}}
+%\put(105,205)
+%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon5.pdf}}}
+\end{picture} 
+\caption{The three different display modes for the FTOF scalers.}
+\label{fcmon2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As of the time of writing of this document, the {\it fcmon} scaler monitoring tool is primary way
+in which the FTOF system performance can be assessed without performing higher-level analysis of
+the collected data. However, the CLAS12 system monitoring suite that is under development will
+represent another tool that the shift worker can use to quickly assess the detector status. This
+user interface will be running on a dedicated terminal in the Hall~B Counting House.
+
+\clearpage
+
+\vfil
+\eject
+
+\section{Information for Subsystem Experts}
+
+\subsection{Subsystem Expert Responsibilities}
+
+The FTOF subsystem experts have several key responsibilities:
+
+\begin{enumerate}
+\item Complete hot checkout sign-off before the start of each run period (see Section~\ref{checkout}).
+\item Respond to calls on the on-call phone to resolve issues with the FTOF system that are necessary during
+data taking (see Section~\ref{oncall}).
+\item Take periodic HV gain calibration runs and adjust the system HV settings (see 
+Section~\ref{gain-calib}).
+\item Make repairs to the hardware during maintenance periods (see Section~\ref{repairs}).
+\end{enumerate}
+
+\subsubsection{Hot Checkout}
+\label{checkout}
+
+Prior to the start of each physics running period, each subsystem group leader is responsible to
+review the components of their systems to be sure that they are fully operational. This review is
+referred to as ``hot checkout''. The hot checkout is an online checklist for each system that
+includes a sign-off for all hardware elements of the system (e.g. HV, LV, detectors, gas, pulser).
+For the FTOF system, the hot checkout includes verification that all detectors are operational and
+that all signals are present as seen through the scaler displays. Fig.~\ref{hot-co} shows screenshots 
+of the hot checkout interface from a development version of the system. Under the heading ``Hall~B
+CLAS12 Detector'', open the list for the FTOF system. All entries for FTOF must be verified as ready.
+Note that often as part of the system checkout before the start of a run period, an initial HV gain 
+calibration is completed (see Section~\ref{gain-calib}). Reminders to complete the system hot checkout
+will be sent out shortly before the start of a given run period with the required deadline for
+completing the work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8.5cm}
+\begin{picture}(30,50) 
+%\put(25,-10)
+%{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{checklist1.pdf}}}
+%\put(260,40)
+%{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{checklist2.pdf}}}
+\end{picture} 
+\caption{Screenshots of the development version of the Hall~B hot checkout screens. The FTOF system
+will appear under the ``Hall~B CLAS12 Detector'' heading. All entries for FTOF have been to verified
+as functional and all items listed as ``Not Ready'' must be changed over to ``Ready''.}
+\label{hot-co}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{On-call Responsibilities}
+\label{oncall}
+
+Each subsystem will organize a list of on-call experts who will take responsibility for carrying
+a cell phone to allow 24 hour access to experts who can address any problems that arise during
+the physics running period. The phone numbers of all subsystem experts are posted on the run page. 
+Any problems that cannot be quickly solved by the shift workers, where quickly amounts to 10 to 15 
+minutes, should result in a call to the relevant expert cell phone. 
+
+The on-call experts can often diagnose problems over the telephone, but there are times where they
+will have to go to the Counting House to more fully address the issues. One of the important
+responsibilities of the on-call experts is to make practical decisions regarding which problems 
+require access to Hall~B for immediate attention and when they can be delayed to periods when the 
+accelerator is down or other work is scheduled in the hall. For the FTOF system, usually problems 
+with a single channel are not important enough to stop the data acquisition. The normal mode of 
+operation after initial investigation of a bad channel, is to turn off the HV for that channel 
+until access can be made for a more detailed investigation. This work should be coordinated with
+the Run Coordinator.
+
+Note: It is the responsibility of the FTOF on-call expert to review all issues that they cannot
+resolve with the FTOF subsystem Group Leader as soon as is reasonable.
+
+\subsubsection{HV Gain Calibrations}
+\label{gain-calib}
+
+The HV gain calibrations for the FTOF system are typically completed before the start of each run
+period, as well as several times during the run period when there is opportunity. The HV gain 
+calibration procedure employs a cosmic ray trigger defined by the Forward Carriage calorimeters. 
+The ADC spectra for each counter are fit to ensure that the minimum ionizing particle peak appears 
+at a specific location in the ADC range corresponding to a specific gain. The end result of the 
+gain calibration amounts to adjusting the system HV settings to position the ADC peaks at their 
+assigned locations.
+
+The calibration suite for the FTOF system includes both an online and an offline component. The
+online component is used to calibrate the PMT gains and the output is a table of PMT HV settings
+that are downloaded into the HV power supplies. The offline component is used to determine the
+parameters to optimize the timing resolution of the system. Full documentation on using the
+FTOF calibration, including tutorials for using the code, are included on the FTOF web page
+\cite{ftof-web}.
+
+\subsection{Anode and Dynode Signals}
+\label{pmt-signals}
+
+Each FTOF PMT has two signal outputs, an anode and a dynode. On average, the anode signal is roughly
+three times larger in amplitude compared to its corresponding dynode signal. For the PMTs of panel-1a
+and panel-2, the anode is a negative polarity signal and the dynode is a bi-polar signal (negative
+polarity primary pulse with a positive polarity overshoot and tail). For the panel-1b PMTs, the anode
+is a negative polarity pulse and the dynode is a positive polarity pulse. Schematic representations of
+the FTOF PMT anode and dynode pulses are shown in Fig.~\ref{pmt-pulses}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{4.7cm}
+\begin{picture}(30,50) 
+%\put(25,170)
+%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{pulse.pdf}}}
+\end{picture} 
+\caption{Schematic representations of the anode (top) and dynode (bottom) PMT pulses from panel-1a, 
+panel-1b, and panel-2.}
+\label{pmt-pulses}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{HV System Operations}
+
+\subsubsection{Setting HV Channel Parameters}
+\label{hv-parms}
+
+The CS-Studio program is used to monitor the HV settings of the FTOF system and to toggle the HV off
+and on for individual or multiple channels in the system. To set the channel values, the operations
+are carried out using control scripts. From the computers in the Hall~B Counting House, the scripts 
+are located in the sector subdirectories located in the path: {\it /home/clasrun/ftof/hv/sn}, where
+{\it sn} is to replaced with {\it s1} to {\it s6} for FTOF S1 $\to$ S6. There are seven scripts 
+available for each FTOF sector:
+
+\begin{itemize}
+\item {\it loadhv-sn}: Contains the HV values for each FTOF channel (units = V)
+\item {\it loadhvmax-sn}: Contains the maximum HV limits for each supply channel (units = V)
+\item {\it loadi0-sn}: Contains the maximum current limits for each supply channel (units = $\mu$A)
+\item {\it loadpw0-sn}: Turns all FTOF channels off
+\item {\it loadpw1-sn}: Turns all FTOF channels on
+\item {\it loadrup-sn}: Sets the voltage ramp up rates for each supply channel (units = V/s)
+\item {\it loadrdn-sn}: Sets the voltage ramp down rates for each supply channel (units = V/s)
+\item {\it loadtrip-sn}: Sets the maximum time duration for an overcurrent condition before the 
+channel trips (units = s)
+\end{itemize}
+
+The nominal settings for the HV channel parameters are as follows:
+
+\begin{itemize}
+\item HV values: Typically in the range from -1200~V to -2500~V
+\item HV$_{max}$ values: panel-1a, panel-2: -2500~V, panel-1b: -2000~V
+\item i$_{max}$ values: 500~$\mu$A
+\item HV ramp up rate: 50~V/s
+\item HV ramp down rate: 100~V/s
+\item Overcurrent duration before trip: 1~s
+\end{itemize}
+
+The scripts to set the channel HV values are created by the HV calibration program. Before changing 
+the HV values for any channel in the FTOF system, the existing {\it loadhv-sn} file must be copied to 
+a backup file with a name containing the date and time that the file was created and this file must be 
+moved to the archive directory located within each sector subdirectory.
+
+Note: The scheme detailed above using scripts to store and set the parameter value is not intended
+as a long-term solution for this purpose. This approach using scripts is a method leftover from before 
+the development of the Slow Controls HV interface and will not be used for much longer. Before the 
+start of commissioning with beam for CLAS12, this functionality will disappear and all save and restore 
+operations will be handled through the FTOF HV control screen (see Section~\ref{save-restore}.
+
+Although not the recommended way to set the HV supply channel parameters, there is the option to adjust
+settings channel-by-channel using the HV ``expert'' screen shown in Fig.~\ref{ftof-screen7}. Here the 
+parameters, $V_{set}$, $I_{set}$, $V_{max}$, and the HV ramp up and ramp down rates, can be entered 
+directly into the parameter field. However, it is imperative that the script settings detailed 
+above be kept fully up to date as they represent the system archive values. This ``expert'' screen
+should most properly be used only for viewing the channel parameter set values.
+
+\subsubsection{HV Save and Restore}
+\label{save-restore}
+
+The FTOF HV interface allows all system channel settings to be saved into a file or loaded from an
+archived file by clicking on the ``Save/Restore'' button in the upper left corner of the main HV
+screen (see Fig.~\ref{ftof-screen3}). The files created are referred to as ``BURT'' backup files,
+where BURT is an acronym for ``Backup and Restore Tool''. BURT is a utility for saving the HV system
+settings into an ascii file readable by the EPICS Slow Control system.
+
+After clicking on the ``Save/Restore'' button, a sub-menu appears as shown in Fig.~\ref{backup-restore1}
+to select ``Save Settings'' or ``Restore Settings''. Clicking on ``Save Settings'' brings up a window
+``CREATE HV BACKUP'' as shown in Fig.~\ref{backup-restore2} showing the save file path and the selected
+file name that contains the system name along with the date and time. If the ``Restore Settings'' option
+is chosen, the window shown in Fig.~\ref{backup-restore3} comes up showing the saved FTOF HV restore
+files available to select from. Selecting a file and clicking on ``OK'' at the bottom of the window
+loads all channel parameters for the full HV system. Note that a new backup file should be created 
+whenever any HV settings have changed, including HV values, channel parameter settings, and channel 
+on/off settings.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{1.5cm}
+\begin{picture}(30,50) 
+%\put(25,210)
+%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{backup-restore1.pdf}}}
+\end{picture} 
+\caption{Sub-menu of the FTOF HV control screen for ``Save/Restore''.}
+\label{backup-restore1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{3.0cm}
+\begin{picture}(30,50) 
+%\put(95,-120)
+%{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642]{backup-restore2.pdf}}}
+\end{picture} 
+\caption{Window that comes up after selecting ``Save Settings'' during a ``Save/Restore'' operation.}
+\label{backup-restore2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{6.0cm}
+\begin{picture}(30,50) 
+%\put(50,285)
+%{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642,angle=-90]{backup-restore3.pdf}}}
+\end{picture} 
+\caption{Window that comes up after selecting ``Restore Settings'' during a ``Save/Restore'' operation.}
+\label{backup-restore3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Cabling Details}
+
+\subsubsection{Signal Cable Maps}
+
+The FTOF channel connections to the VME readout electronics are mapped in such a way that neighboring
+PMTs are not connected to neighboring electronics inputs. This scheme was devised to reduce any
+electronics noise coupling (i.e. cross-talk). The VME electronics channel mapping is shown in 
+Fig.~\ref{ftof-fadc-map} for the FADCs, in Fig.~\ref{ftof-disc-map} for the discriminators, and in 
+Fig.~\ref{ftof-tdc-map} for the TDCs. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{20.0cm}
+\begin{picture}(30,50) 
+%\put(35,-45)
+%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-fadc-map.pdf}}}
+\end{picture} 
+\caption{Electronics map for the input connections to the FTOF VME FADCs.}
+\label{ftof-fadc-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{20.0cm}
+\begin{picture}(30,50) 
+%\put(35,-45)
+%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-disc-map.pdf}}}
+\end{picture} 
+\caption{Electronics map for the input connections to the FTOF VME discriminators.}
+\label{ftof-disc-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{20.0cm}
+\begin{picture}(30,50) 
+%\put(35,-45)
+%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-tdc-map.pdf}}}
+\end{picture} 
+\caption{Electronics map for the input connections to the FTOF VME TDCs .}
+\label{ftof-tdc-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Signal Cable Layout}
+\label{signal-conn}
+
+The anode and dynode signal cables for each PMT run from the voltage divider to a local disconnect
+patch panel located behind the panel-2 arrays in each sector. A schematic diagram of this patch panel
+is shown in Fig.~\ref{patch-panel2}. Note that there are two local disconnect patch panels for each
+FTOF sector, one for the left anode and dynode cables and one for the right anode and dynode cables.
+The signal cables for each sector are then strung to the Forward Carriage electronics to a second set
+of patch panels. A schematic diagram of the so-called electronics patch panels is shown in 
+Fig.~\ref{patch-panel1}. The signals are then run from this patch panel to the discriminators (for the 
+anode signals) and to the FADCs (for the dynode signals). Note, as stated in Section~\ref{pmt-signals}, 
+the dynode signals for panel-1b emerge with positive polarity from the voltage dividers. To invert the 
+signal polarity to be compatible with the readout electronics, an in-line inverting transformer (Phillips 
+Scientific Model \#460) is connected to the electronics patch panel. Figs.~\ref{cable-types1} and
+\ref{cable-types2} in Section~\ref{cable-connections} give schematics for the cable and connector types 
+for each segment of the connections from the voltage divider to the readout electronics for the counters 
+in FTOF panel-1a, panel-1b, and panel-2.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{6.0cm}
+\begin{picture}(30,50) 
+%\put(5,265)
+%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642,angle=-90]{patch-panel2.pdf}}}
+\end{picture} 
+\caption{Schematic of the signal cable local disconnect patch panels positioned just behind the 
+panel-2 FTOF counters for each Forward Carriage sector. For each sector there are two such patch 
+panels associated with the left and the right sides of the counter. The white filled circles are 
+unused connectors.}
+\label{patch-panel2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{7.0cm}
+\begin{picture}(30,50) 
+%\put(35,255)
+%{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642,angle=-90]{patch-panel1.pdf}}}
+\end{picture} 
+\caption{Schematic of the signal cable electronics patch panel located on the Forward Carriage. There 
+are four such panels for each sector for anode left/right and dynode left/right connections. The white 
+filled circles are unused connections.}
+\label{patch-panel1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{HV Cable Layout}
+\label{hv-layout}
+
+The high voltage cables for each PMT run from the voltage divider to a local disconnect HV distribution
+box located behind the panel-2 arrays in each sector next to the signal cable local disconnect patch
+panels. Note that there are four HV distribution boxes for each sector, two for the left PMTs and two
+for the right PMTs of each sector. Fig.~\ref{ftof-hv-map} shows the layout of the two HV distribution 
+boxes for the left and right PMT HV connections. The output of each HV distribution box is a pair of
+35-ft-long multi-conductor cables, each containing 24-channels, with a Radiall connector to mate 
+with the HV A1535N board input connector. See Figs.~\ref{cable-types1} and \ref{cable-types2} in 
+Section~\ref{cable-connections} for schematics of the cable and connector types for each segment of the 
+HV connections from the voltage divider to the HV power supplies for the counters in FTOF panel-1a, 
+panel-1b, and panel-2. The HV power supply channel assignments for each sector are nominally given as 
+shown in Fig.~\ref{ftof-hvmap}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{6.7cm}
+\begin{picture}(30,50) 
+%\put(45,-35)
+%{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{ftof-hv-map.pdf}}}
+\end{picture} 
+\caption{Mapping of the HV channel connections to the HV distribution boxes for each sector. Each
+sector is connected to four HV distribution boxes, two for the left side PMTs and two for the right
+side PMTs. Note: The box beam that supports the panel-2 arrays and the patch panels themselves is
+located under the second box.}
+\label{ftof-hv-map}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8.0cm}
+\begin{picture}(30,50) 
+%\put(-15,-85)
+%{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{ftof-hvmap.pdf}}}
+\end{picture} 
+\caption{HV mainframe FTOF channel assignments for each sector.}
+\label{ftof-hvmap}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Altering Cable Maps}
+
+The nominal procedure if there is a problem with a VME electronics board is to replace the board
+with a spare unit. However, for testing purposes, it might be necessary to change a signal input
+at the FADC, discriminator, or TDC to an unused channel. This work must always be done in coordination
+with the DAQ system expert in order to update the channel map used as input to the translation 
+table. This operation is not something that is normally done and should not be attempted by shift
+workers or FTOF experts as it could lead to problems decoding the data.
+
+Problems with channels within the HV system are more common issues as channels on the HV distribution
+box or on an A1535N card are reasonably common. The standard procedure when there is a problem with
+a CAEN HV board is to swap out the board (see Section~\ref{board-swap}). If there is a problem on the HV 
+distribution box on either the left or right side of a sector, there are six spare HV channels that 
+are available. These are detailed in Section~\ref{hv-layout}. If one of these spare channels is to be 
+used, the first step before disconnecting any system HV cables is to be sure that the channel HV is 
+turned off for the channel to be moved. The SHV cable can then be moved to one of the open connectors 
+on the HV distribution box shown in Fig.~\ref{ftof-hv-map}. In order to update the HV channels map, 
+contact the Slow Controls expert.
+
+\subsubsection{Cable Connections}
+\label{cable-connections}
+
+In order to better understand the signal and high voltage cabling scheme for the FTOF system,
+Figs.~\ref{cable-types1} and \ref{cable-types2} show for panel-1a, panel-1b, and panel-2 the cable 
+and connection types from the counter PMTs to the Forward Carriage electronics and power supplies.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8.5cm}
+\begin{picture}(30,50) 
+%\put(-5,-50)
+%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{cable-types1.pdf}}}
+\end{picture} 
+\caption{FTOF panel-1a and panel-2 HV and signal cable connections.}
+\label{cable-types1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8.0cm}
+\begin{picture}(30,50) 
+%\put(-5,-35)
+%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{cable-types2.pdf}}}
+\end{picture} 
+\caption{FTOF panel-1b HV and signal cable connections.}
+\label{cable-types2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\vfil
+\eject
+
+\subsection{System Failure Modes}
+\label{repairs}
+
+For the FTOF detector, there are a number of usual ``failure'' modes with which the system expert should
+be familiar. These include the following:
+
+\begin{itemize}
+\item Replacing a HV board (see Section~\ref{board-swap}).
+\item Sudden ADC gain shift (see Section~\ref{gain-shift}).
+\item High PMT dark current (see Section~\ref{high-current}).
+\item Missing anode or dynode signal (see Section~\ref{missing}).
+\item Bad PMT (see Section~\ref{bad-pmt}).
+\item Readout electronics issues (see Section~\ref{readout-issues}).
+\item IOC issues (see Section~\ref{ioc-issues}).
+\end{itemize}
+
+\subsubsection{HV Board Replacement}
+\label{board-swap}
+
+The evidence for a bad HV board (A1535N) is either that the 24 channels associated with a single 
+board won't ramp up to full voltage before tripping off or bad voltage regulation. For the case
+of bad voltage regulation, the channels ramp up to full voltage but then fluctuate about the demand 
+voltage setting by up to several hundred volts. Before deciding whether a HV board is bad, some
+investigation should be completed to ensure that a single HV channel is not causing the problems
+with the board, which could point to a problem with the PMT or voltage divider. If a board is deemed 
+bad and needs to be replaced, the following steps are necessary:
+
+\begin{enumerate}
+\item Take a spare A1535N board from the storage area on the second level of the Pie Tower in Hall~B.
+\item Turn the front panel key on the HV supply to the ``off'' position and toggle the main power 
+switch to ``off'' on the back of the HV supply.
+\item On the back of the supply, remove the Radiall connector on the bad board.
+\item Pull out the bad board, being careful of the Radiall connectors on the neighboring boards.
+\item Install the new board and reconnect the Radiall connector.
+\item Toggle the main power switch to ``on'' and turn the HV power supply on using the key on the front 
+panel, putting the key in the ``local'' position.
+\item Run all parameter scripts for the HV power supply to load all channel parameters. See instructions
+in Section~\ref{hv-parms}.
+\item Enter information on the new board and the old bad board into the Hall~B equipment database (see
+the Appendix).
+\item Leave the bad board on the RadCon Survey table in Hall~B.
+\end{enumerate}
+
+\subsubsection{Sudden Gain Shift}
+\label{gain-shift}
+
+Sometimes a sudden gain shift can appear in the ADC spectra for a given counter. There are a number of
+possible causes for such a condition.
+
+\begin{itemize}
+\item Problematic PMT - sometimes gain shifts can be attributed to a problem with a PMT that requires 
+adjustment of the HV settings. Of course, PMT gain issues typically lead to a reduced gain that requires 
+an increase of the HV. 
+\item DAQ Problems - the most common cause for an apparent gain shift in the ADC spectra for a counter is 
+due to problems with the FADC settings. Such problems can typically be diagnosed from pedestal shifts or 
+widened pedestals. The pedestals can be checked by taking FADC data in ``raw mode''. Note that as the
+panel-1a and panel-1b dynode signal used for the FADC inputs are bipolar pulses (see Section~\ref{pmt-signals}), 
+issues with shifts in the signal summing region can have a dramatic impact on the FADC spectra. 
+\item Bad Inverters - the panel-1b dynode signals, which are used for the input to the FADCs, are nominally
+positive polarity pulses that are sent through an inline inverter attached to the Forward Carriage patch
+panel (see Section~\ref{signal-conn}). These inverters occasionally go bad and can be diagnosed comparing 
+the signal on either side of the inverter. Bad inverters should be replaced with new spare inverters 
+contained in the FTOF storage cabinets on the upper level of the Pie Tower.
+\item Light Leak - it is possible that a gain shift can be due to hardware damage or a light leak on the 
+counter. Note that issues with hardware damage are less likely for the panel-1a and panel-1b counters as 
+they are buried between the LTCC/RICH detectors and the calorimeters. Of course, the panel-2 counters are 
+more exposed and hardware issues can either be explored by looking at signals or measuring dark currents 
+at the voltage dividers, the local disconnect patch panels, or the electronics patch panels. The panel-2 
+detectors themselves can be explored using access with manlifts as necessary, coordinating work through 
+the Hall~B Work Coordinator.
+\end{itemize}
+
+\subsubsection{High PMT Dark Current}
+\label{high-current}
+
+High PMT dark currents can be seen in the channel scaler displays. The dark currents can be measured
+at either the local disconnect or the electronics patch panels. There are three likely causes for high 
+PMT dark currents:
+
+\begin{enumerate}
+\item Bad PMT - At times when a PMT goes bad, its dark current can increase. Typical FTOF PMT dark 
+currents are at the level of 50~nA or less. If a bad PMT has been identified, it can only be worked 
+on during designated FTOF servicing periods. However, the usual procedure is to leave the PMT 
+energized and live with the increased dark current unless the higher currents cause the HV supply 
+channel to trip. If the channel HV needs to be turned off, the logbook should be updated and the HV 
+setting configuration with the channel off should be saved as the nominal setting.
+\item Light Leak - A light leak in the counter wrapping will also lead to higher dark currents. The 
+issue of light leaks is not expected to be an issue for the panel-1a and panel-1b counters as they 
+are buried within the detectors on the Forward Carriage and ambient light levels are very low. For 
+the panel-2 counters, they are more exposed. Light leaks can be repaired during opportunities when 
+the Forward Carriage is moved away from the torus magnet.
+\item Reflective Layer Wrapping Problems (panel-1b only) - There is an issue with the wrapping of 
+the reflective layer on some of the panel-1b counters that has been seen to lead to ``super-hot'' PMTs, 
+with dark currents up to 100~$\mu$A. There are several PMTs that have a history of showing such high 
+currents, but occasionally a PMT that had been operating without issue, can suddenly show very large 
+currents. Sometimes the current draw will monotonically reduce over the period of several hours. These 
+PMTs will remain at low currents as long as the HV is not turned off. Sometimes, the currents remain 
+high regardless of how long they are energized. In such cases, judgment should be exercised as to 
+whether to leave the channel on or off. If the channel is turned off, the HV setting configuration 
+should be updated and saved.
+\end{enumerate}
+
+\subsubsection{Missing Anode or Dynode Signal}
+\label{missing}
+
+Occasionally a signal will disappear from FTOF monitoring plots. In such a situation, further
+investigation will be necessary. 
+
+\begin{itemize}
+\item If both anode and dynode signals are missing, this could be due either to a problem with the HV, 
+the VME crate (which would affect and entire board or entire sector), or the PMT itself. If the problem
+is with the HV board, it should be replaced as detailed in Section~\ref{board-swap}. PMT problems are
+typically apparent as the nominal PMT signal (see Fig.~\ref{pmt-pulses}) is absent, severely distorted, 
+or replaced by high frequency noise.
+\item If one signal is present and the other is missing, this could be a bad cable connection anywhere
+from the voltage divider to the input to the electronics. The way to diagnose is to use an
+oscilloscope to look at the signal at each accessible junction point. If the signal is missing from the
+monitoring data but is seen to be good at the input to the FADC and TDC, contact the DAQ expert for
+help.
+\item If the dynode signal is missing from panel-1b, this is likely caused by a bad signal inverter
+(see Section~\ref{gain-shift}).
+\item If either the anode or dynode signal is missing from a panel-1a or panel-2 PMT and the cabling
+checks out, the problem is likely due to a bad component on the voltage divider. In such a case the
+channel must be turned off (with HV channel parameters updated - see Section~\ref{save-restore}). 
+Repairs can only be made during a designated FTOF repair cycle.
+\end{itemize}
+
+\subsubsection{Bad PMT}
+\label{bad-pmt}
+
+One of the most common failure modes of a PMT is a gradual loss of gain over the period of
+several years. This can be compensated by adjusting the HV to maintain the gain setting. The
+PMTs used in the FTOF system have maximum voltage ratings of -2500~V for the PMTs in panel-1a
+and panel-2, and -2000~V for the PMTs in panel-1b. Once the PMT HV is set to its maximum value
+and the gain falls below the nominal setting, the PMT should be flag for replacement during
+the next servicing opportunity.
+
+\subsubsection{Readout Electronics Issues}
+\label{readout-issues}
+
+Readout electronics issues, typically associated with all channels associated with a given
+discriminator board, TDC board, or FADC board, once diagnosed should be brought to the
+attention of the DAQ system expert for further diagnosis and attention.
+
+\subsubsection{IOC Issues}
+\label{ioc-issues}
+
+Loss of communication between the IOC and the HV mainframe is seen by a yellow color status for
+all HV channels in a given sector. The IOC should be reset following the instructions given in
+Section~\ref{hv-control}. If resetting the IOC does not solve the problems, contact the 
+Slow Controls system expert.
+
+\subsection{Detector Repairs and Servicing}
+
+Repairs and servicing on the FTOF detectors themselves, specifically panel-1a and panel-1b, are 
+highly involved and inherent risky operations. As the counters themselves are structurally robust, 
+no mechanical problems are expected with them during the lifetime of CLAS12. However, PMTs do 
+occasionally go bad due to gain reductions as a function of time and need to be replaced. In addition, 
+voltage dividers can also sometimes go bad due to failed components. In order to replace a PMT or a 
+voltage divider on either panel-1b or panel-1a, the entire panels have to be removed from the Forward 
+Carriage and placed on the floor of Hall~B. This involves removal of the associated LTCC and either 
+one or both FTOF arrays depending on which array needs servicing. Such an operation would never be 
+done to repair a single bad element due to the effort and the risk involved. Of course, PMT and/or 
+divider replacement for the panel-2 counters can be performed in situ using a ladder or a manlift 
+(depending on the PMT location). This work will be carried out either by the FTOF Group Leader or 
+the Hall~B technicians during a scheduled hall access. As for panel-1b and panel-1a, mechanical 
+problems with the scintillation counters themselves in panel-2 are not expected to be necessary 
+during the lifetime of CLAS12.
+
+All FTOF detector repairs will be organized through the FTOF Group Leader in conjunction with the
+Hall~B Work Coordinator to be scheduled during a planned major down time for Hall~B.
+
+\clearpage
+
+\vfil
+\eject
+
+\section{Documentation}
+
+All current documentation for the FTOF system is located on the official FTOF web page~\cite{ftof-web}. 
+A number of basic subsystem documents can be found there including:
+
+\begin{itemize}
+\item FTOF System Operations Manual (this document)
+\item FTOF Geometry Document
+\item FTOF Calibration Constants
+\item FTOF Monte Carlo Simulation Details
+\item FTOF Reconstruction Document
+\item Assorted photographs of the detector hardware
+\end{itemize}
+
+\section{FTOF Authorized Personnel}
+\label{personnel}
+
+Beyond turning on/off the FTOF system HV and monitoring the system scalers, all other operations and
+repairs are only to be carried out by the list of authorized personnel shown in Table~\ref{expert-list}.
+The list of authorized personnel for FTOF can only be modified by FTOF Group Leader.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular} {|c|c|c|c|} \hline
+Name             & Telephone    & email              & Area             \\ \hline \hline
+Daniel S. Carman & 757-269-5586 & carman@jlab.org    & FTOF Group Leader\\ \hline
+Cole Smith       &              & lcsmith@jlab.org   & Hardware         \\ \hline
+Sergey Boyarinov & 757-269-5795 & boyarinov@jlab.org & DAQ              \\ \hline
+Nathan Baltzell  & 757-269-5902 & baltzell@jlab.org  & Slow Controls    \\ \hline
+\end{tabular}
+\caption{FTOF detector authorized personnel.}
+\label{expert-list}
+\end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\vfil
+\eject
+
+\section{Appendix: Hall~B Instrumentation Database}
+
+When electronics modules or HV modules are removed from Hall~B and replaced during servicing with
+new boards, the information regarding both the old board and the new board need to be entered into
+the Hall~B Instrumentation Database. This database is accessed online at http://clonwiki0.jlab.org
+by clicking on the ``Hall~B Inventory'' link. This brings up the access screen shown in 
+Fig.~\ref{inventory}. To enter information for the old component, search for it in the database using
+its property tag information. When the item shows up, click on the ``Action'' button for
+``Modify this item''. Be sure to change the location of the item to ``Hall~B Underground/RadCon Table''
+and change the status of the item to ``Action needed/Broken'', as well as to leave the item on the
+RadCon survey table in Hall~B. By entering this information, email will be sent to the property custodian
+to pick up the item for servicing. For the new component, be sure to also change the location as
+appropriate using the same approach.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8.0cm}
+\begin{picture}(30,50) 
+%\put(5,305)
+%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642,angle=-90]{inventory.pdf}}}
+\end{picture} 
+\caption{Hall~B equipment database web page.}
+\label{inventory}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\vfil
+\eject
+
+\begin{thebibliography}{99}
+
+\bibitem{e-log}
+Hall~B Electronic Logbook: https://logbooks.jlab.org/book/hblog
+
+\bibitem{beast}
+Hall~B BEAST alarm handler: \\
+https://clasweb.jlab.org/wiki/index.php/Slow\_Control\_Alarms
+
+\bibitem{ftof-web}
+FTOF web page: http://www.jlab.org/Hall-B/ftof
+
+\end{thebibliography}
+
+
+
+
+
+\end{document}
