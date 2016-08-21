@@ -36,14 +36,14 @@
 \maketitle
 
 \begin{abstract}
-This document provides an overview of the CLAS12 Electromagnetic Calorimeter (ECAL) System and serves 
+This document provides an overview of the CLAS12 Electromagnetic Calorimeter (EC) System and serves 
 as an Operations Manual for the detector. Instructions are provided for shift workers related to 
 basic steps of operating and monitoring the HV controls, monitoring the detector system and 
 responding to alarms, and knowing when to contact the on-call personnel. More complete details 
-are also provided for ECAL system experts regarding the channel mapping to the readout electronics, 
+are also provided for EC system experts regarding the channel mapping to the readout electronics, 
 the cable connections and routing in Hall~B, higher-order high voltage system operations, and 
-detector servicing. This document also provides references to the available ECAL documentation and 
-a list of personnel authorized to perform ECAL system repairs and modify system settings.
+detector servicing. This document also provides references to the available EC documentation and 
+a list of personnel authorized to perform EC system repairs and modify system settings.
 \end{abstract}
 
 \thispagestyle{empty}
@@ -61,14 +61,14 @@ a list of personnel authorized to perform ECAL system repairs and modify system 
 \section{EC Overview}
 \label{intro}
 
-The CLAS12 ECAL package includes the legacy CLAS6 electromagnetic calorimeters (EC) and new pre-shower calorimeter (PCAL) modules installed just upstream of EC.  Six sectors of ECAL in CLAS12 will be used primarily for identification of electrons, photons (including $\pi^0\rightarrow 2\gamma$ decays), and neutrons.Both PCAL and EC are triangular-shaped sampling calorimeters. The calorimeter design uses a lead-scintillator sandwich consisting of alternating layers of 1-cm thick scintillators and ~2 mm thick lead sheets. At 11 GeV the total thickness corresponds to about 21 radiation lengths. Scintillator layers are grouped into three stereo views, called U, V, and W,  which are readout using photomultiplier tubes (PMT).  Specifications for each calorimeter are outlined below. 
+The CLAS12 EC package includes the legacy CLAS6 electromagnetic calorimeters (ECAL) and new pre-shower calorimeter (PCAL) modules installed just upstream of ECAL.  Six sectors of EC in CLAS12 will be used primarily for identification of electrons, photons (including $\pi^0\rightarrow 2\gamma$ decays), and neutrons.Both PCAL and ECAL are triangular-shaped sampling calorimeters. The calorimeter design uses a lead-scintillator sandwich consisting of alternating layers of 1-cm thick scintillators and ~2 mm thick lead sheets. At 11 GeV the total thickness corresponds to about 21 radiation lengths. Scintillator layers are grouped into three stereo views, called U, V, and W,  which are readout using photomultiplier tubes (PMT).  Specifications for each calorimeter are outlined below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
   \centering
   \includegraphics[width= 5in, keepaspectratio = true]{fc-pcal-ecal}
   \vspace{2mm}
-\caption{Photographs of the EC (left) and PCAL (right) calorimeter modules installed on the Forward
+\caption{Photographs of the ECAL (left) and PCAL (right) calorimeter modules installed on the Forward
     Carriage in Hall B.  The Forward Carriage is roughly 10~m in diameter.}
   \label{fwd_car}
 \end{figure}
@@ -110,7 +110,7 @@ Light yield & 11-12 photo e-/MeV \\ \hline
 \begin{center}
 \begin{tabular}{|l|l|} \hline
 {\bf Parameter}        & {\bf Design Value} \\ \hline \hline
-{\bf EC}         &              \\ \hline
+{\bf ECAL}         &              \\ \hline
 Calorimeter type   & Sampling, lead-scintillator \\ \hline
 Number of modules  & 6 \\ \hline
 Module shape and dimensions & Triangle, base 420 cm height 388.8 cm \\ \hline
@@ -137,13 +137,13 @@ Time resolution & 500 ps \\ \hline
 
 \end{tabular}
 \end{center}
-\caption{EC technical design parameters.} 
+\caption{ECAL technical design parameters.} 
 \label{tab:ftofproperties}
 \end{table}
 
 \newpage
 
-A block diagram of the readout electronics for the ECAL system is shown in 
+A block diagram of the readout electronics for the EC system is shown in 
 Figure~\ref{readout-elec}. Signal cables are routed from the PMT locations on the calorimeter
 modules to UVA 122B splitter panels located on the front of the electronics racks. The cable
 connections are BNC at the PMT anode and LEMO at the splitter.  From the splitter, patch cables
@@ -158,8 +158,8 @@ trigger decision making.
   \centering
   \includegraphics[width= 7in, keepaspectratio = true]{readout-electronics}
   \vspace{2mm}
-  \caption{Schematic of signal readout electronics for ECAL system.  Shown are the cable and split ratios for the EC
-    PMTs.  The PCAL case is similar but uses different split ratios.  Not shown are HV connections.  For EC transition patch cables were used at either end of the RG-8 signal cable, which are not shown here.
+  \caption{Schematic of signal readout electronics for ECAL system.  Shown are the cable and split ratios for the ECAL
+    PMTs.  The PCAL case is similar but uses different split ratios.  Not shown are HV connections.  For ECAL transition patch cables were used at either end of the RG-8 signal cable, which are not shown here.
   }
   \label{readout-elec} 
 \end{figure}
@@ -172,16 +172,16 @@ Carriage as follows:
 
 \begin{minipage}{0.5\textwidth}
 \begin{itemize}
-\item ECAL S1: FC Level 2 South (Beam left)
-\item ECAL S2: FC Level 3 South (Beam left)
-\item ECAL S3: FC Level 3 North (Beam right)
+\item EC S1: FC Level 2 South (Beam left)
+\item EC S2: FC Level 3 South (Beam left)
+\item EC S3: FC Level 3 North (Beam right)
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 \begin{itemize}
-\item ECAL S4: FC Level 2 North (Beam right)
-\item ECAL S5: FC Level 1 North (Beam right)
-\item ECAL S6: FC Level 1 South (Beam left)
+\item EC S4: FC Level 2 North (Beam right)
+\item EC S5: FC Level 1 North (Beam right)
+\item EC S6: FC Level 1 South (Beam left)
 \end{itemize}
 \end{minipage}
 
@@ -204,9 +204,9 @@ Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width= 7in, keepaspectratio = true]{FC-EC-rack-layout}
+  \includegraphics[width= 7in, keepaspectratio = true]{FC-EC-rack-layout-2}
   \vspace{2mm}
-  \caption{Schematic layout of the ECAL VME electronics, signal cable splitters, and HV power 
+  \caption{Schematic layout of the EC VME electronics, signal cable splitters, and HV power 
   supplies in the electronics racks on each of the three levels of the Forward Carriage. The rack names on each level (c1, c2,
   and c3) are numbered 1 through 10.}
   \label{fc-layout-1} 
@@ -219,22 +219,22 @@ Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of th
   \includegraphics[width= 5in, keepaspectratio = true]{Sector6-electronics}
   \vspace{2mm}
   \caption{Photograph of racks C1-6 through C1-10 (Sector 6) during cable installation.  The rack with no cables installed (C1-8)
-  houses four EC splitter panels (top), the FADC250 VXS crate (middle) and DSC2/TDC VXS crate (bottom).  The CAEN HV mainframe $\it{hvecal6}$ is at far left in rack C1-6, and the PCAL/FTOF mainframe $\it{hvftof6}$ is to the right in rack C1-7.}
+  houses four ECAL splitter panels (top), the FADC250 VXS crate (middle) and DSC2/TDC VXS crate (bottom).  The CAEN HV mainframe $\it{hvecal6}$ is at far left in rack C1-6, and the PCAL/FTOF mainframe $\it{hvftof6}$ is to the right in rack C1-7.}
   \label{fc-layout-2} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 HV cable connections to the rear of the mainframes are made using a JLAB built transition/distribution box with 48 SHV input connectors and two output cables each terminated with a 24-pin connector designed to mate with the receptacle on the A1535N cards (see Figure~\ref{fc-layout-3}).
 
-Both signal and HV cables from the ECAL system pass under the floor gratings on Levels 2 and 3 and for Level 1
-cables are routed through openings in the ceiling.  For EC RG-8 signal cables the connection to BNC-Lemo transition cables
-are made under the grating near the racks containing the EC splitter panels (Figure~\ref{fc-layout-3}.)
+Both signal and HV cables from the EC system pass under the floor gratings on Levels 2 and 3 and for Level 1
+cables are routed through openings in the ceiling.  For ECAL RG-8 signal cables the connection to BNC-Lemo transition cables
+are made under the grating near the racks containing the ECAL splitter panels (Figure~\ref{fc-layout-3}.)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
   \centering
   \includegraphics[width= 5in, keepaspectratio = true]{Cable-routing}
   \vspace{2mm}
-  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of EC HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
+  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of ECAL HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
   \label{fc-layout-3} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,19 +251,19 @@ are made under the grating near the racks containing the EC splitter panels (Fig
 
 \subsection{Shift Worker Responsibilities}
 
-The shift worker in the Hall~B Counting House has five responsibilities with regard to the ECAL
+The shift worker in the Hall~B Counting House has five responsibilities with regard to the EC
 system:
 
 \begin{enumerate}
 \item Updating the Hall~B electronic logbook with records of problems or system conditions (see 
 Section~\ref{logbook}).
 
-\item Contacting ECAL system on-called personnel for any problems that are discovered (see 
+\item Contacting EC system on-called personnel for any problems that are discovered (see 
 Section~\ref{contact}).
 
-\item Responding to ECAL system alarms from the Hall~B alarm handler (see Section~\ref{alarms}).
+\item Responding to EC system alarms from the Hall~B alarm handler (see Section~\ref{alarms}).
 
-\item Turning on or off the high voltage for the ECAL system using the HV control interface (see 
+\item Turning on or off the high voltage for the EC system using the HV control interface (see 
 Section~\ref{hv-control}).
 
 \item Monitoring the hit occupancy scalers for the system (see Section~\ref{monitoring}).
@@ -281,15 +281,15 @@ Note the shift worker should follow all posted or communicated instructions abou
 scaler screens into the e-log. This is typically done once per 8-hour shift as directed on the
 shift checklist.
 
-\subsubsection{Contacting ECAL System Personnel}
+\subsubsection{Contacting EC System Personnel}
 \label{contact}
 
 As a general rule, shift workers should spend no more than 10 to 15 minutes attempting to solve
 any problem that arises with the EC system. At that point they should contact the assigned 
-ECAL on-call worker to either provide advice on how to proceed or to address the problem.
+EC on-call worker to either provide advice on how to proceed or to address the problem.
 
 This document is divided into a section for shift workers and EC system experts. However, only 
-ECAL system experts (as listed in Section~\ref{personnel}) are authorized to make changes to the ECAL
+EC system experts (as listed in Section~\ref{personnel}) are authorized to make changes to the EC
 parameter settings, to work on the hardware or electronics, or to modify the DAQ system 
 software. This division between shift worker responsibilities and expert responsibilities is
 essential to maintain in order to protect and safeguard the equipment, to ensure data collection
@@ -307,18 +307,18 @@ of the shift worker is to respond to alarms from this system, either by taking c
 or contacting the appropriate on-call personnel. Instructions and details on the alarm handler for Hall~B
 are given in Ref.~\cite{beast}.
 
-For the ECAL system, the only element of the system monitored by the alarm handler is the HV system.
+For the EC system, the only element of the system monitored by the alarm handler is the HV system.
 Any time a channel trips off an alarm will sound. The alarm handler will identify the specific
 channel (or channels) that have tripped. These channels can be reset either through the alarm handler
-or through the nominal ECAL HV control screens. These channels should be reset only after ensuring
+or through the nominal EC HV control screens. These channels should be reset only after ensuring
 that whatever condition caused the trip (e.g. bad beam conditions) has been addressed.
 
 \subsection{High Voltage Controls}
 \label{hv-control}
 
-Control of the ECAL HV mainframes is through the Hall~B CS-Studio suite, which is an Eclipse-based collection 
+Control of the EC HV mainframes is through the Hall~B CS-Studio suite, which is an Eclipse-based collection 
 of tools used as an interface to the EPICS Slow Control system. To start the user interface on any 
-terminal in the Hall~B Counting House, enter the command {\it clascss}. Fig.~\ref{ecal-screen1} 
+terminal in the Hall~B Counting House, enter the command {\it clascss}. Figure~\ref{ecal-screen} 
 shows the control panel that is launched.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -335,114 +335,69 @@ shows the control panel that is launched.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-HV controls are presented in two ways: either mapped to the physical detector or mapped to the HV mainframe
-crate,slot,channel
-To bring up the ECAL HV controls, click on the ``ECAL'' button on the subsystem list. This pops up a 
-sub-menu of all Slow Controls subprograms for the ECAL system, of which there is only one, ``ECAL HV'' 
-Clicking on this option brings up the HV control interface for the ECAL system as shown in
-Fig.~\ref{ecal-screen}. This interface allows for HV operations at a number of functionality levels:
+HV controls are presented in two ways: either mapped to the physical detector (sector,layer,component) or
+mapped to the HV mainframe (crate,slot,channel).
+To access detector-based EC HV controls, click on the ``ECAL'' button on the Detectors list. This pops up a 
+sub-menu of all Slow Controls subprograms for the ECAL system.  Clicking on ``EC HV''
+will bring up the HV control panel shown in Figure~\ref{ecal-screen} (right). This interface allows
+simple ON/OFF HV operations which are detailed in Figure~\ref{ecal-screen2}.
 
-\begin{itemize}
-\item All channels in the full ECAL system
-\item All channels in a single ECAL sector (panel-1a, panel-1b, panel-2)
-\item All channels in a single sector for a given panel
-\item The left PMTs or the right PMTs in a given sector and panel
-\item A single PMT in the ECAL system
-\end{itemize}
+For the shift worker the most common operations are turning off and on large groups of PMTs.  These
+group operations are accessed via the pop-up menus which appear when clicking on the labels shown in
+Figure~\ref{ecal-screen2} and described below:
 
-shows the control panel that is launched.
+\begin{enumerate}
+\item Turning on and off all PMTs within a single sector.
+\item Turning on and off all PMTs within a single calorimeter (ECAL or PCAL).
+\item Turning on and off all PMTs within a single U,V,W view of a single calorimeter.
+\end{enumerate}
 
+In addition to group ON/OFF operations it may be occasionally necessary to access single PMTs in order to
+enable, disable, change the HV or alter various set-points for that specific PMT.  This is accomplished by
+either clicking on the ``Controls'' selection in Figure~\ref{ecal-screen2} which brings up all PMTs corresponding
+to a (U,V,W) view, or clicking on the circular icon corresponding to the desired PMT (see Figure~\ref{ecal-screen3})
+to bring up just the panel for that PMT.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
   \centering
   \includegraphics[width= 5in, keepaspectratio = true]{ecal-hv-screen-5}
   \vspace{2mm}
-  \caption{Detail of Fig.~\ref{ecal-screen} which shows sector 1
+  \caption{Detail of Fig.~\ref{ecal-screen} which shows sector ``1''
     has been selected, activating the pop-up option menu.  Individual controls for modules are
-    labeled ``ECAL'', ``PCAL'' and for individual views ``U,V,W'' which provide similar pop-up menus.
-    Control of individual PMTs within a view is possible by clicking the circular elements.  }
+    labeled ``ECAL'', ``PCAL'' and for individual views ``U,V,W'' which provide similar pop-up menus
+    as shown.  Control of individual PMTs within a view is possible by clicking the circular elements.  }
   \label{ecal-screen2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-For the shift worker the most common operations are:
-
-\begin{enumerate}
-\item To turn the HV for all system PMTs on or off. This is accomplished by clicking the button in the 
-upper right corner ``ALL ON/OFF''. This pops up a sub-menu with the relevant options.
-\item To turn individual PMTs on or off. This is accomplished by clicking on the circle representing 
-the channel of interest. This brings up a control screen for the channel of interest as shown in
-Fig.~\ref{ftof-screen4}. Clicking on the ``Pw'' button toggles the channel HV on and off.
-\item To turn the HV for all PMTs in a single sector on or off. This is accomplished by clicking on 
-the sector button in the upper right corner (S1 $\to$ S6) (see Fig.~\ref{ftof-screen3}). This pops up a 
-sub-menu with the relevant options.
-\item To turn the HV for all PMTs in a given panel and sector on or off. This is accomplished by
-clicking on the Sector button (Sector~1 $\to$ Sector~6) next to the panel of interest. This pops
-up a sub-menu with the relevant options as shown in Fig.~\ref{ftof-screen5}.
-\end{enumerate}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{0.5cm}
-\begin{picture}(30,50) 
-%\put(85,150)
-%{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-4.pdf}}}
-\end{picture} 
-\caption{FTOF HV display for single channel parameters.}
-\label{ftof-screen4}
+  \centering
+  \includegraphics[width= 6in, keepaspectratio = true]{expert-novice}
+  \vspace{2mm}
+  \caption{ECAL HV displays for single PMT HV controls.  Hover the mouse over the PMT icons to
+    view popup of EPICS Property Value (PV) identifier. Select the desired PMT to bring up Novice
+    mode controls (middle) which allow only OFF/ON control via the Pw button.  Click Expert button to
+    bring up controls for voltage (Vset), maximum HV divider current (Iset), maximum HV (Vmax), HV ramp
+  rates (Up,Down). Note these settings apply only to the PMT selected, not all PMTs.}
+  \label{ecal-screen3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5.8cm}
-\begin{picture}(30,50) 
-%\put(85,230)
-%{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-5.pdf}}}
-\end{picture} 
-\caption{FTOF HV display and control interface to open channel controls for a given panel and sector.}
-\label{ftof-screen5}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+If a single PMT is selected, a window similar to Fig.~\ref{ecal-screen3} (middle) is displayed. This
+window shows the monitored channel voltage and currennt $V_{mon}$ (V) and $I_{set}$ ($\mu$A), the channel status (OFF, ON),
+and the demand or set channel voltage $V_{set}$ (V).  Also shown is the maximum permissible HV divider
+current $I_{set}$ ($\mu$A).  This interface would be used by shift workers to enable or disable a
+PMT via the Pw button.
 
-If the ``Open Channel Controls'' option shown in Fig.~\ref{ftof-screen5} is selected, a ``novice'' 
-window is opened as shown in Fig.~\ref{ftof-screen6}. This window shows the monitored channel voltage 
-and current ($V_{mon}$ (V) and $I_{mon}$ ($\mu$A)), the channel status (OFF, ON), and the set channel
-voltage and current ($V_{set}$ (V) and $I_{set}$ ($\mu$A)). If desired, shift workers can toggle the
-HV settings for single channels on or off through this interface.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{9.0cm}
-\begin{picture}(30,50) 
-%\put(105,-15)
-%{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{ftof-hv-screen-6.pdf}}}
-\end{picture} 
-\caption{FTOF ``novice'' channel controls screen.}
-\label{ftof-screen6}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In the upper left corner of this ``Channel Controls'' window is a button marked ``expert'' that
-brings up the window shown in Fig.~\ref{ftof-screen7}. This allows changes to the system settings
+In the upper left corner of the window is a button marked ``Expert'' that
+brings up the window shown at the botton of Fig.~\ref{ecal-screen3}. This window allows changes to the system settings
 for the maximum channel current, maximum channel voltage setting, and the channel HV ramp up and 
-ramp down rates. Clicking on the ``novice'' button in the upper left corner toggles between the 
+ramp down rates.   Clicking on the ``Novice'' button
+in the upper left corner toggles between the 
 expert and novice screens. \textcolor{red}{The expert screen should only be used by the list of 
-authorized FTOF personnel given in Section~\ref{personnel}.} 
+authorized EC personnel given in Section~\ref{personnel}.} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{7.5cm}
-\begin{picture}(30,50) 
-%\put(65,265)
-%{\hbox{\includegraphics[width=0.57\textwidth,natwidth=610,natheight=642,angle=-90]{ftof-hv-screen-7.pdf}}}
-\end{picture} 
-\caption{FTOF ``expert'' channel controls screen.}
-\label{ftof-screen7}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The HV Control Interface screen (see Fig.~\ref{ftof-screen3}) also provides a color key to indicate 
+The HV Control Interface screen (see Fig.~\ref{ecal-screen}) also provides a color key to indicate 
 the channel status:
 
 \begin{itemize}
@@ -454,72 +409,84 @@ the channel status:
 \item Undefined channel status - magenta
 \end{itemize}
 
-If there is a communication error present, which typically appears for all PMTs in a given sector,
-the usual cause is an issue of communication between the HV control interface and the IOC computer 
-that interfaces with the HV mainframe or between the IOC computer and the HV mainframe. To reboot the
-IOC for a given sector, click on the ``IOCs'' button in the upper left corner of the channel control 
-screen (see Fig.~\ref{ftof-screen3}) and then click on the ``Reboot'' button for the sector of 
-interest.
+When HV controls are unresponsive or HV monitoring stripcharts appear to become static it is likely
+to be an EPICS communication error due to an IOC process that cannot communicate with the hardware or a
+server.  Sometimes the hardware is at fault and has to be rebooted or power-cycled.  Usually this
+requires an IOC reboot.  Controls for monitoring IOC status and rebooting frozen IOCs are available from
+several menus.  For the EC HV system the IOC screen can be reached from the CSS menu via the ``HV''
+button under Subsystems (see Figure~\ref{ecal-screen4}.)  To reboot the
+IOC for a specific mainframe, click on the ``Restart iocHV*'' button corresponding to the desired mainframe.
+PMT channels for which an IOC reboot is necessary will illuminate yellow as illustrated for the EC Sector 6 PMTs
+in Figure~\ref{ecal-screen}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 6in, keepaspectratio = true]{HV_IOC_2}
+  \vspace{2mm}
+  \caption{EPICS IOC status and controls are available from the CSS Main Menu by clicking on ``HV'' under ``Subsystems'',
+    then clicking on ``IOC Status''.  This will be necessary whenever HV Mainframes are power-cycled or otherwise
+  interrupted, or if the HW Comms Status lights are anything but green, or the IOC ``HeartBeat'' is not blinking green.}
+  \label{ecal-screen4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vfil
+\eject
 
 \subsection{Detector Monitoring}
 \label{monitoring}
 
-A number of monitoring tools to study the performance of the FTOF detector system have been
-prepared. One of the most basic and powerful tools, however, is a simple display of the
-system scalers. A tool to monitor and display the scalers for the Forward Carriage detectors
-is called {\it fcmon}. To launch this program from any Counting House computer, type: {\it fcmon}.
-This brings up the window as shown in Fig.~\ref{fcmon1}(left). This tool enables display of
-the scalers from the FTOF discriminators and FADCs for each of the six CLAS12 sectors. To
-use the interface, click on the FTOF sector of interest in the left column, click on FTOF in
+A number of monitoring tools to study the performance of the Forward Carriage detector systems
+have been prepared. A hierarchy of tools is desirable to allow quick access to detector status
+without the necessity of bringing up the Data Acquistion (DAQ).  One of the earliest tools developed
+was a ROOT-based GUI called FCMON~\cite{fcmon} to monitor and display scalers for the
+Forward Carriage detectors.  To launch this program from any Counting House computer, type {\it fcmon}.
+This brings up the window as shown in Figure~\ref{fcmon1} (left). This tool enables display of
+the scalers from all forward carriage discriminators and FADCs for each of the six CLAS12 sectors. To
+use the interface for EC, click on the sector of interest in the left column, click on ECAL or PCAL in
 the center column, and then click on the source of the scalers in the third column. To bring
 up the scaler display screens, select ``Scalers'' under the ``Monitor'' drop down menu as
-shown in Fig.~\ref{fcmon1}(right).
+shown in Figure~\ref{fcmon1} (right).
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.5cm}
-\begin{picture}(30,50) 
-%\put(-15,-155)
-%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642]{fcmon1.pdf}}}
-%\put(155,-155)
-%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642]{fcmon2.pdf}}}
-\end{picture} 
-\caption{Forward Carriage scaler display program {\it fcmon}. (Left) Main screen. (Right) Main screen
-with access to scaler display window.}
+  \centering
+  \includegraphics[width= 6in, keepaspectratio = true]{fcmon-1}
+  \vspace{2mm}
+  \caption{Forward Carriage scaler display program {\it fcmon}. (Left) Main screen. (Right) Menu selection to
+    access scaler display window.  Click on ``scalers''.}
 \label{fcmon1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The FTOF scalers can be monitored in one of three different ways by selecting the appropriate tab
+The EC scalers can be monitored in one of three different ways by selecting the appropriate tab
 at the top of the scaler display screen (see Fig.~\ref{fcmon2}). These three modes include:
 
 \begin{itemize}
-\item Mode 1 (Slots): Scaler rate values (Hz) displayed for each FTOF channel
-\item Mode 2 (Rates): Scaler rate values (Hz) plotted for each FTOF channel
-\item Mode 3 (Stripcharts): Scaler rate values (Hz) plotted as a strip chart (rate vs. time)
+\item Slots: Scaler rate values (Hz) displayed for each VXS crate slot,channel housing the DSC2 or FADC modules.
+\item Rates: Scaler rate values (Hz) plotted for each physical EC detector channel.
+\item Stripcharts: Scaler rate values (Hz) plotted as a 2D strip chart (rate (z) vs. counter (y)  vs. time (x))
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{18.5cm}
-\begin{picture}(30,50) 
-%\put(105,620)
-%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon3.pdf}}}
-%\put(105,413)
-%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon4.pdf}}}
-%\put(105,205)
-%{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{fcmon5.pdf}}}
-\end{picture} 
-\caption{The three different display modes for the FTOF scalers.}
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{fcmon-screens}
+  \vspace{2mm}
+  \caption{Display modes of {\it fcmon} Scalers GUI. Top Left: Slot,channel readout Top Right: Rates vs. PMT
+    number and U,V,W view Bottom: 2D stripchart showing rates vs. time.}
 \label{fcmon2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As of the time of writing of this document, the {\it fcmon} scaler monitoring tool is primary way
-in which the FTOF system performance can be assessed without performing higher-level analysis of
-the collected data. However, the CLAS12 system monitoring suite that is under development will
-represent another tool that the shift worker can use to quickly assess the detector status. This
-user interface will be running on a dedicated terminal in the Hall~B Counting House.
+As of the time of writing of this document, FCMON is the most direct tool for determining if the front-end
+electronics are receiving the intended signals from the PMTs. If holes show up in these plots, the first step is
+to determine if the HV for the affected PMT is on and if the HV divider current is non-zero.  For this purpose, the
+HV Control GUIs already discussed can provide this information.  Further steps may be taken to determine the cause
+of occupancy problems.  A Java based CLAS12 system monitoring suite that is under development will
+represent another tool that the shift worker can use to quickly assess the detector status. Both FCMON and 
+other monitoring tools will be running on dedicated terminals in the Hall~B Counting House.
 
 \clearpage
 
@@ -530,11 +497,11 @@ user interface will be running on a dedicated terminal in the Hall~B Counting Ho
 
 \subsection{Subsystem Expert Responsibilities}
 
-The FTOF subsystem experts have several key responsibilities:
+The EC subsystem experts have several key responsibilities:
 
 \begin{enumerate}
 \item Complete hot checkout sign-off before the start of each run period (see Section~\ref{checkout}).
-\item Respond to calls on the on-call phone to resolve issues with the FTOF system that are necessary during
+\item Respond to calls on the on-call phone to resolve issues with the EC system that are necessary during
 data taking (see Section~\ref{oncall}).
 \item Take periodic HV gain calibration runs and adjust the system HV settings (see 
 Section~\ref{gain-calib}).
@@ -548,10 +515,10 @@ Prior to the start of each physics running period, each subsystem group leader i
 review the components of their systems to be sure that they are fully operational. This review is
 referred to as ``hot checkout''. The hot checkout is an online checklist for each system that
 includes a sign-off for all hardware elements of the system (e.g. HV, LV, detectors, gas, pulser).
-For the FTOF system, the hot checkout includes verification that all detectors are operational and
+For the EC system, the hot checkout includes verification that all detectors are operational and
 that all signals are present as seen through the scaler displays. Fig.~\ref{hot-co} shows screenshots 
 of the hot checkout interface from a development version of the system. Under the heading ``Hall~B
-CLAS12 Detector'', open the list for the FTOF system. All entries for FTOF must be verified as ready.
+CLAS12 Detector'', open the list for the EC system. All entries for EC must be verified as ready.
 Note that often as part of the system checkout before the start of a run period, an initial HV gain 
 calibration is completed (see Section~\ref{gain-calib}). Reminders to complete the system hot checkout
 will be sent out shortly before the start of a given run period with the required deadline for
@@ -559,15 +526,11 @@ completing the work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8.5cm}
-\begin{picture}(30,50) 
-%\put(25,-10)
-%{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{checklist1.pdf}}}
-%\put(260,40)
-%{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{checklist2.pdf}}}
-\end{picture} 
-\caption{Screenshots of the development version of the Hall~B hot checkout screens. The FTOF system
-will appear under the ``Hall~B CLAS12 Detector'' heading. All entries for FTOF have been to verified
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{Hot-checkout}
+  \vspace{2mm}
+\caption{Screenshots of the development version of the Hall~B hot checkout screens. The EC system
+will appear under the ``Hall~B CLAS12 Detector'' heading. All entries for EC have been to verified
 as functional and all items listed as ``Not Ready'' must be changed over to ``Ready''.}
 \label{hot-co}
 \end{figure}
@@ -586,7 +549,7 @@ The on-call experts can often diagnose problems over the telephone, but there ar
 will have to go to the Counting House to more fully address the issues. One of the important
 responsibilities of the on-call experts is to make practical decisions regarding which problems 
 require access to Hall~B for immediate attention and when they can be delayed to periods when the 
-accelerator is down or other work is scheduled in the hall. For the FTOF system, usually problems 
+accelerator is down or other work is scheduled in the hall. For the EC system, usually problems 
 with a single channel are not important enough to stop the data acquisition. The normal mode of 
 operation after initial investigation of a bad channel, is to turn off the HV for that channel 
 until access can be made for a more detailed investigation. This work should be coordinated with
@@ -1128,7 +1091,7 @@ A number of basic subsystem documents can be found there including:
 \section{FTOF Authorized Personnel}
 \label{personnel}
 
-Beyond turning on/off the FTOF system HV and monitoring the system scalers, all other operations and
+Beyond turning on/off the EC system HV and monitoring the system scalers, all other operations and
 repairs are only to be carried out by the list of authorized personnel shown in Table~\ref{expert-list}.
 The list of authorized personnel for FTOF can only be modified by FTOF Group Leader.
 
@@ -1137,12 +1100,13 @@ The list of authorized personnel for FTOF can only be modified by FTOF Group Lea
 \begin{center}
 \begin{tabular} {|c|c|c|c|} \hline
 Name             & Telephone    & email              & Area             \\ \hline \hline
-Daniel S. Carman & 757-269-5586 & carman@jlab.org    & FTOF Group Leader\\ \hline
-Cole Smith       &              & lcsmith@jlab.org   & Hardware         \\ \hline
+Stepan Stepanyan & 757-269-7196 & stepanya@jlab.org  & EC Group Leader  \\ \hline
+Cole Smith       & 434-249-4307 & lcsmith@jlab.org   & Hardware         \\ \hline
+Daniel Carman    & 757-269-5586 & carman@jlab.org    & Hardware         \\ \hline
 Sergey Boyarinov & 757-269-5795 & boyarinov@jlab.org & DAQ              \\ \hline
 Nathan Baltzell  & 757-269-5902 & baltzell@jlab.org  & Slow Controls    \\ \hline
 \end{tabular}
-\caption{FTOF detector authorized personnel.}
+\caption{EC detector authorized personnel.}
 \label{expert-list}
 \end{center}
 \end{table}
@@ -1192,6 +1156,10 @@ Hall~B Electronic Logbook: https://logbooks.jlab.org/book/hblog
 \bibitem{beast}
 Hall~B BEAST alarm handler: \\
 https://clasweb.jlab.org/wiki/index.php/Slow\_Control\_Alarms
+
+\bibitem{fcmon}
+  FCMON:\\
+https://github.com/forcar/fc/wiki/FCMON  
 
 \bibitem{ftof-web}
 FTOF web page: http://www.jlab.org/Hall-B/ftof
