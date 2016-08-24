@@ -190,8 +190,9 @@ Carriage as follows:
 Note that ``South'' refers to beam left and ``North'' to beam right (closer to the Pie Tower).
 
 Figure~\ref{fc-layout-1} shows the Forward Carriage rack locations for the ECAL VME electronics and signal cable patch 
-panels.  Note the rack layout for beam left is a mirror image of the layout for beam right.  Also Level 1 rack layout
-is different due to cable routing (discussed below).
+panels.  Note the rack layout for beam left is a mirror image of the layout for beam right.  Also the Level 1 rack layout
+is different due to an altername cable routing (discussed later).  A photograph of the Sector 6 rack installation is
+shown in Figure~\ref{fc-layout-2}.
 
 The HV power supplies for all PMTs in each ECAL sector are either CAEN 1527LC mainframes or CAEN 4527 mainframes 
 outfitted with negative polarity 24-channel A1535N cards which fit into slots at the rear of each
@@ -200,6 +201,7 @@ system are actually shared between the FTOF and the PCAL. The FTOF boards occupy
 mainframe and the PCAL boards occupy slots 8 to 15 of each mainframe. These supplies are named HVFTOFn, 
 n=1$\to$6 (i.e. HVFTOF1 $\to$ HVFTOF 6). The HV mainframes for the EC modules are named HVECALn (n=1$\to$6).
 Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of the EC sectors on the Forward Carriage.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -223,22 +225,6 @@ Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of th
   \label{fc-layout-2} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-HV cable connections to the rear of the mainframes are made using a JLAB built transition/distribution box with 48 SHV input connectors and two output cables each terminated with a 24-pin connector designed to mate with the receptacle on the A1535N cards (see Figure~\ref{fc-layout-3}).
-
-Both signal and HV cables from the EC system pass under the floor gratings on Levels 2 and 3 and for Level 1
-cables are routed through openings in the ceiling.  For ECAL RG-8 signal cables the connection to BNC-Lemo transition cables
-are made under the grating near the racks containing the ECAL splitter panels (Figure~\ref{fc-layout-3}.)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width= 5in, keepaspectratio = true]{Cable-routing}
-  \vspace{2mm}
-  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of ECAL HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
-  \label{fc-layout-3} 
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 
 \clearpage
@@ -474,7 +460,7 @@ at the top of the scaler display screen (see Fig.~\ref{fcmon2}). These three mod
   \centering
   \includegraphics[width= 7in, keepaspectratio = true]{fcmon-screens}
   \vspace{2mm}
-  \caption{Display modes of {\it fcmon} Scalers GUI. Top Left: Slot,channel readout Top Right: Rates vs. PMT
+  \caption{Display modes of FCMON Scalers GUI. Top Left: Slot,channel readout Top Right: Rates vs. PMT
     number and U,V,W view Bottom: 2D stripchart showing rates vs. time.}
 \label{fcmon2}
 \end{figure}
@@ -555,117 +541,86 @@ operation after initial investigation of a bad channel, is to turn off the HV fo
 until access can be made for a more detailed investigation. This work should be coordinated with
 the Run Coordinator.
 
-Note: It is the responsibility of the FTOF on-call expert to review all issues that they cannot
-resolve with the FTOF subsystem Group Leader as soon as is reasonable.
+Note: It is the responsibility of the EC on-call expert to review all issues that they cannot
+resolve with the EC subsystem Group Leader as soon as is reasonable.
 
 \subsubsection{HV Gain Calibrations}
 \label{gain-calib}
 
-The HV gain calibrations for the FTOF system are typically completed before the start of each run
+The HV gain calibrations for the EC system are typically completed before the start of each run
 period, as well as several times during the run period when there is opportunity. The HV gain 
-calibration procedure employs a cosmic ray trigger defined by the Forward Carriage calorimeters. 
+calibration procedure employs a cosmic ray trigger defined either ECAL or PCAL. 
 The ADC spectra for each counter are fit to ensure that the minimum ionizing particle peak appears 
 at a specific location in the ADC range corresponding to a specific gain. The end result of the 
 gain calibration amounts to adjusting the system HV settings to position the ADC peaks at their 
 assigned locations.
 
-The calibration suite for the FTOF system includes both an online and an offline component. The
+The calibration suite for the EC system includes both an online and an offline component. The
 online component is used to calibrate the PMT gains and the output is a table of PMT HV settings
 that are downloaded into the HV power supplies. The offline component is used to determine the
-parameters to optimize the timing resolution of the system. Full documentation on using the
-FTOF calibration, including tutorials for using the code, are included on the FTOF web page
-\cite{ftof-web}.
+parameters to optimize the absolute energy calibration and resolution of the system. Full documentation
+on using EC calibration, including tutorials for using the code, are included on the EC web page.
+\cite{ecal-web}.
 
-\subsection{Anode and Dynode Signals}
-\label{pmt-signals}
-
-Each FTOF PMT has two signal outputs, an anode and a dynode. On average, the anode signal is roughly
-three times larger in amplitude compared to its corresponding dynode signal. For the PMTs of panel-1a
-and panel-2, the anode is a negative polarity signal and the dynode is a bi-polar signal (negative
-polarity primary pulse with a positive polarity overshoot and tail). For the panel-1b PMTs, the anode
-is a negative polarity pulse and the dynode is a positive polarity pulse. Schematic representations of
-the FTOF PMT anode and dynode pulses are shown in Fig.~\ref{pmt-pulses}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{4.7cm}
-\begin{picture}(30,50) 
-%\put(25,170)
-%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{pulse.pdf}}}
-\end{picture} 
-\caption{Schematic representations of the anode (top) and dynode (bottom) PMT pulses from panel-1a, 
-panel-1b, and panel-2.}
-\label{pmt-pulses}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{HV System Operations}
 
 \subsubsection{Setting HV Channel Parameters}
 \label{hv-parms}
 
-The CS-Studio program is used to monitor the HV settings of the FTOF system and to toggle the HV off
-and on for individual or multiple channels in the system. To set the channel values, the operations
-are carried out using control scripts. From the computers in the Hall~B Counting House, the scripts 
-are located in the sector subdirectories located in the path: {\it /home/clasrun/ftof/hv/sn}, where
-{\it sn} is to replaced with {\it s1} to {\it s6} for FTOF S1 $\to$ S6. There are seven scripts 
-available for each FTOF sector:
+The CS-Studio program is used to monitor the HV settings of the EC system and to toggle the HV off
+and on for individual or multiple channels in the system.  As discussed in Section, there is also
+the option to adjust settings channel-by-channel using the HV ``expert'' screen shown in
+Fig.~\ref{ecal-screen3}. Here the parameters, $V_{set}$, $I_{set}$, $V_{max}$, and the HV ramp up and
+ramp down rates, can be entered directly into the parameter fields.  This ``expert'' screen
+should most properly be used only for viewing the channel parameter set values. Finally there are control scripts
+available in the event nominal settings need to be restored. From the computers in the Hall~B Counting House,
+the scripts are located in the sector subdirectories located in the path: {\it /home/clasrun/ecal/hv/sn}, and
+{\it /home/clasrun/pcal/hv/sn} where {\it sn} corresponds to {\it s1} to {\it s6} for S1 $\to$ S6.
+There are five scripts available for setting these HV channel parameters:
 
 \begin{itemize}
-\item {\it loadhv-sn}: Contains the HV values for each FTOF channel (units = V)
-\item {\it loadhvmax-sn}: Contains the maximum HV limits for each supply channel (units = V)
-\item {\it loadi0-sn}: Contains the maximum current limits for each supply channel (units = $\mu$A)
-\item {\it loadpw0-sn}: Turns all FTOF channels off
-\item {\it loadpw1-sn}: Turns all FTOF channels on
-\item {\it loadrup-sn}: Sets the voltage ramp up rates for each supply channel (units = V/s)
-\item {\it loadrdn-sn}: Sets the voltage ramp down rates for each supply channel (units = V/s)
-\item {\it loadtrip-sn}: Sets the maximum time duration for an overcurrent condition before the 
+\item {\it loadhvmax-sn}: Maximum HV limits for each supply channel (units = V)
+\item {\it loadi0-sn}:    Maximum current limits for each supply channel (units = $\mu$A)
+\item {\it loadrup-sn}:   Voltage ramp up rates for each supply channel (units = V/s)
+\item {\it loadrdn-sn}:   Voltage ramp down rates for each supply channel (units = V/s)
+\item {\it loadtrip-sn}:  Maximum time duration for an overcurrent condition before the 
 channel trips (units = s)
 \end{itemize}
 
 The nominal settings for the HV channel parameters are as follows:
 
 \begin{itemize}
-\item HV values: Typically in the range from -1200~V to -2500~V
-\item HV$_{max}$ values: panel-1a, panel-2: -2500~V, panel-1b: -2000~V
+\item HV values (PCAL): Typically in the range from -800~V to -950~V
+\item HV values (ECAL): Typically in the range from -1500~V to -2000~V
+\item HV values (PCAL): Typically in the range from -800~V to -950~V
+\item HV$_{max}$ values: PCAL: -1000~V, ECAL: -2500~V
 \item i$_{max}$ values: 500~$\mu$A
 \item HV ramp up rate: 50~V/s
 \item HV ramp down rate: 100~V/s
 \item Overcurrent duration before trip: 1~s
 \end{itemize}
 
-The scripts to set the channel HV values are created by the HV calibration program. Before changing 
-the HV values for any channel in the FTOF system, the existing {\it loadhv-sn} file must be copied to 
-a backup file with a name containing the date and time that the file was created and this file must be 
-moved to the archive directory located within each sector subdirectory.
+Individual HV values and the enable/disable status of each PMT are created by the monitoring and
+calibration programs and these values are stored in a separate database.  There are no backup scripts for
+setting these values since they are time-dependent and have to be carefully managed.  Nevertheless
+save and restore values can be archived from the EC HV control screen (see Section~\ref{save-restore}.
 
-Note: The scheme detailed above using scripts to store and set the parameter value is not intended
-as a long-term solution for this purpose. This approach using scripts is a method leftover from before 
-the development of the Slow Controls HV interface and will not be used for much longer. Before the 
-start of commissioning with beam for CLAS12, this functionality will disappear and all save and restore 
-operations will be handled through the FTOF HV control screen (see Section~\ref{save-restore}.
-
-Although not the recommended way to set the HV supply channel parameters, there is the option to adjust
-settings channel-by-channel using the HV ``expert'' screen shown in Fig.~\ref{ftof-screen7}. Here the 
-parameters, $V_{set}$, $I_{set}$, $V_{max}$, and the HV ramp up and ramp down rates, can be entered 
-directly into the parameter field. However, it is imperative that the script settings detailed 
-above be kept fully up to date as they represent the system archive values. This ``expert'' screen
-should most properly be used only for viewing the channel parameter set values.
 
 \subsubsection{HV Save and Restore}
 \label{save-restore}
 
-The FTOF HV interface allows all system channel settings to be saved into a file or loaded from an
-archived file by clicking on the ``Save/Restore'' button in the upper left corner of the main HV
-screen (see Fig.~\ref{ftof-screen3}). The files created are referred to as ``BURT'' backup files,
+The EC HV interface allows all system channel settings to be saved into a file or loaded from an
+archived file by clicking on the ``ECAL'' or ``PCAL'' button in the upper right corner of the main HV
+screen (see Fig.~\ref{ecal-screen}). The files created are referred to as ``BURT'' backup files,
 where BURT is an acronym for ``Backup and Restore Tool''. BURT is a utility for saving the HV system
 settings into an ascii file readable by the EPICS Slow Control system.
 
-After clicking on the ``Save/Restore'' button, a sub-menu appears as shown in Fig.~\ref{backup-restore1}
+After clicking on the detector button, a sub-menu appears as shown in Fig.~\ref{backup-restore1}
 to select ``Save Settings'' or ``Restore Settings''. Clicking on ``Save Settings'' brings up a window
-``CREATE HV BACKUP'' as shown in Fig.~\ref{backup-restore2} showing the save file path and the selected
+``CREATE HV BACKUP'' as shown at bottom,  displaying the save file path and the selected
 file name that contains the system name along with the date and time. If the ``Restore Settings'' option
-is chosen, the window shown in Fig.~\ref{backup-restore3} comes up showing the saved FTOF HV restore
+is chosen, the window shown in Fig.~\ref{backup-restore2} comes up showing the saved ECAL or PCAL  HV restore
 files available to select from. Selecting a file and clicking on ``OK'' at the bottom of the window
 loads all channel parameters for the full HV system. Note that a new backup file should be created 
 whenever any HV settings have changed, including HV values, channel parameter settings, and channel 
@@ -673,57 +628,125 @@ on/off settings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{1.5cm}
-\begin{picture}(30,50) 
-%\put(25,210)
-%{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{backup-restore1.pdf}}}
-\end{picture} 
-\caption{Sub-menu of the FTOF HV control screen for ``Save/Restore''.}
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{burt-save.png}
+  \vspace{2mm}
+  \caption{Top: Choose the appropriate detector (ECAL or PCAL) for saving HV settings.  The pop-up menu will
+    allow you to select ``Save Settings'' or ``Restore Settings''.  Bottom: If ``Save Settings'' is chosen,
+    a pop-up confirmation dialog will display the path and name of the BURT snapshot file, using the timestamp format shown at bottom.
+    This name can be edited if desired.}
 \label{backup-restore1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.0cm}
-\begin{picture}(30,50) 
-%\put(95,-120)
-%{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642]{backup-restore2.pdf}}}
-\end{picture} 
-\caption{Window that comes up after selecting ``Save Settings'' during a ``Save/Restore'' operation.}
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{burt-restore.png}
+  \vspace{2mm}
+  \caption{If ``Restore Settings'' is chosen, use the pop-up file chooser to select the snapshot
+    file for restoring HV settings.}
 \label{backup-restore2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cabling Details}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Signal Cable Layout}
+\label{signal-conn}
+
+The U,V,W PMTs for the ECAL modules are located at the rear (downstream) face of each triangle-shaped module
+(see Figure~\ref{ecal-pmts}) and are distributed uniformly along its perimeter.  There are two layers of
+PMTs: the top layer reads out the inner calorimeter (closest to the target) and the bottom layer reads out
+the outer calorimeter. The PMTs are also oriented
+parallel to the U,V,W strips within each module.  HV and RG-8 signal cables are fastened to and routed along steel gratings
+running parallel to the calorimeter sides.  RG-58 patch cables (16 ns delay) run from the PMT anode connector
+to the thicker and less flexible RG-8 cable.  At the other end of the RG-8, a second connection is made to
+RG-58 patch cables (16 ns delay) connected to LEMO inputs at the rear of the UVA 122B splitter panels.  These
+patch connections are illustrated by the photos in Figure~\ref{ecal-patch-cables}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{6.0cm}
-\begin{picture}(30,50) 
-%\put(50,285)
-%{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642,angle=-90]{backup-restore3.pdf}}}
-\end{picture} 
-\caption{Window that comes up after selecting ``Restore Settings'' during a ``Save/Restore'' operation.}
-\label{backup-restore3}
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{ecal-pmts.jpg}
+  \vspace{2mm}
+  \caption{Placement of ECAL U,V,W PMTs at rear (downstream) side of Sector 2 module.  Gratings are
+  used to route HV and RG-8 signal cables.}
+\label{ecal-pmts}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Cabling Details}
 
-\subsubsection{Signal Cable Maps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{ecal-patch-cables.png}
+  \vspace{2mm}
+  \caption{For ECAL two RG-58 16 ns patch cable connections are made to the RG-8 signal cable: at the PMT
+    end and near the UVA 122B splitter panels at the electronic racks.  Left: Connections
+    made along the rail grating next to the PMTs.  Middle: Connection made beneath the floor cratings on
+    Levels 2 and 3 of the Forward Carriage.  Right: Connections made within the electronics racks on Level 1.}
+\label{ecal-patch-cables}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The FTOF channel connections to the VME readout electronics are mapped in such a way that neighboring
-PMTs are not connected to neighboring electronics inputs. This scheme was devised to reduce any
-electronics noise coupling (i.e. cross-talk). The VME electronics channel mapping is shown in 
-Fig.~\ref{ftof-fadc-map} for the FADCs, in Fig.~\ref{ftof-disc-map} for the discriminators, and in 
-Fig.~\ref{ftof-tdc-map} for the TDCs. 
+The U,V,W PMTs for the PCAL modules are mounted along the sides of each module
+(see Figures~\ref{pcal-pmts} and \ref{pcal-pmts-2}).  Due to geometry constraints the V,W PMTs for PCAL are located
+together on the same side (corresponding to V PMT side of the ECAL.)  For PCAL only the U PMTs and cable connections
+are accessible from the Forward Carriage decks.  Figure~\ref{pcal-pmts-3} shows a view of the PCAL U cable routing
+within the gap between adjcent ECAL modules, and Figure~\ref{pcal-pmts-4} shows the V,W cable routing for Sector 6.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{pcal-pmts}
+  \vspace{2mm}
+  \caption{Placement of PCAL U PMTs (left) and V,W PMTs (right).  Photo taken in EEL Building. }
+\label{pcal-pmts}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{pcal-installation}
+  \vspace{2mm}
+  \caption{Orientation of PCAL U and V,W PMTs relative to ECAL.  Photo taken in Hall B during installation
+  of PCAL in Sector 5 of the Forward Carriage.}
+\label{pcal-pmts-2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{pcal-installation-3.jpg}
+  \vspace{2mm}
+  \caption{Routing of HV and RG-58 signal cables from U PMTs of PCAL.  Cables pass through the
+  gap in between adjacent ECAL modules (seen above and below in the photo.)}
+\label{pcal-pmts-3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{pcal-installation-4.jpg}
+  \vspace{2mm}
+  \caption{Routing of HV and RG-58 signal cables from V,W PMTs of PCAL.  Cables are routed directly to
+    cable trays mounted parallel to the V,W readout side for all modules. Only Sector 5 and Sector 6
+    (seen here) V,W PMTs are accessible from floor level with ladders.  Other sectors require a man-lift for access.
+     Also visible at left are the V PMTs for ECAL.}
+\label{pcal-pmts-4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{20.0cm}
-\begin{picture}(30,50) 
-%\put(35,-45)
-%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-fadc-map.pdf}}}
-\end{picture} 
+
 \caption{Electronics map for the input connections to the FTOF VME FADCs.}
 \label{ftof-fadc-map}
 \end{figure}
@@ -732,10 +755,6 @@ Fig.~\ref{ftof-tdc-map} for the TDCs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{20.0cm}
-\begin{picture}(30,50) 
-%\put(35,-45)
-%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-disc-map.pdf}}}
-\end{picture} 
 \caption{Electronics map for the input connections to the FTOF VME discriminators.}
 \label{ftof-disc-map}
 \end{figure}
@@ -744,64 +763,33 @@ Fig.~\ref{ftof-tdc-map} for the TDCs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{20.0cm}
-\begin{picture}(30,50) 
-%\put(35,-45)
-%{\hbox{\includegraphics[width=1.20\textwidth,natwidth=610,natheight=642,angle=90]{ftof-tdc-map.pdf}}}
-\end{picture} 
+ 
 \caption{Electronics map for the input connections to the FTOF VME TDCs .}
 \label{ftof-tdc-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Signal Cable Layout}
-\label{signal-conn}
-
-The anode and dynode signal cables for each PMT run from the voltage divider to a local disconnect
-patch panel located behind the panel-2 arrays in each sector. A schematic diagram of this patch panel
-is shown in Fig.~\ref{patch-panel2}. Note that there are two local disconnect patch panels for each
-FTOF sector, one for the left anode and dynode cables and one for the right anode and dynode cables.
-The signal cables for each sector are then strung to the Forward Carriage electronics to a second set
-of patch panels. A schematic diagram of the so-called electronics patch panels is shown in 
-Fig.~\ref{patch-panel1}. The signals are then run from this patch panel to the discriminators (for the 
-anode signals) and to the FADCs (for the dynode signals). Note, as stated in Section~\ref{pmt-signals}, 
-the dynode signals for panel-1b emerge with positive polarity from the voltage dividers. To invert the 
-signal polarity to be compatible with the readout electronics, an in-line inverting transformer (Phillips 
-Scientific Model \#460) is connected to the electronics patch panel. Figs.~\ref{cable-types1} and
-\ref{cable-types2} in Section~\ref{cable-connections} give schematics for the cable and connector types 
-for each segment of the connections from the voltage divider to the readout electronics for the counters 
-in FTOF panel-1a, panel-1b, and panel-2.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{6.0cm}
-\begin{picture}(30,50) 
-%\put(5,265)
-%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642,angle=-90]{patch-panel2.pdf}}}
-\end{picture} 
-\caption{Schematic of the signal cable local disconnect patch panels positioned just behind the 
-panel-2 FTOF counters for each Forward Carriage sector. For each sector there are two such patch 
-panels associated with the left and the right sides of the counter. The white filled circles are 
-unused connectors.}
-\label{patch-panel2}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{7.0cm}
-\begin{picture}(30,50) 
-%\put(35,255)
-%{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642,angle=-90]{patch-panel1.pdf}}}
-\end{picture} 
-\caption{Schematic of the signal cable electronics patch panel located on the Forward Carriage. There 
-are four such panels for each sector for anode left/right and dynode left/right connections. The white 
-filled circles are unused connections.}
-\label{patch-panel1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{HV Cable Layout}
 \label{hv-layout}
+
+HV cable connections to the rear of the mainframes are made using a JLAB built transition/distribution box with 48 SHV input connectors and two output cables each terminated with a 24-pin connector designed to mate with the receptacle on the A1535N cards (see Figure~\ref{fc-layout-3}).
+
+Both signal and HV cables from the EC system pass under the floor gratings on Levels 2 and 3 and for Level 1
+cables are routed through openings in the ceiling.  For ECAL RG-8 signal cables the connection to BNC-Lemo transition cables
+are made under the grating near the racks containing the ECAL splitter panels (Figure~\ref{fc-layout-3}.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width= 5in, keepaspectratio = true]{Cable-routing}
+  \vspace{2mm}
+  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of ECAL HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
+  \label{fc-layout-3} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 The high voltage cables for each PMT run from the voltage divider to a local disconnect HV distribution
 box located behind the panel-2 arrays in each sector next to the signal cable local disconnect patch
@@ -1161,9 +1149,10 @@ https://clasweb.jlab.org/wiki/index.php/Slow\_Control\_Alarms
   FCMON:\\
 https://github.com/forcar/fc/wiki/FCMON  
 
-\bibitem{ftof-web}
-FTOF web page: http://www.jlab.org/Hall-B/ftof
-
+\bibitem{ecal-web}
+  EC web page: \\
+  https://clasweb.jlab.org/wiki/index.php/CLAS12\_Forward\_Electromagnetic\_Calorimeter
+  
 \end{thebibliography}
 
 
