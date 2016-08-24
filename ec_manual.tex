@@ -5,6 +5,7 @@
 \renewcommand{\contentsname}{\hfill\bfseries\Large Contents\hfill}   %center toc title
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}   %put .... in toc
+\usepackage{rotating}
 \usepackage{url}                            %put websites in paper
 \usepackage[margin=0.8in]{geometry}         %adjust margins
 \usepackage{graphicx}                       %use images
@@ -61,7 +62,14 @@ a list of personnel authorized to perform EC system repairs and modify system se
 \section{EC Overview}
 \label{intro}
 
-The CLAS12 EC package includes the legacy CLAS6 electromagnetic calorimeters (ECAL) and new pre-shower calorimeter (PCAL) modules installed just upstream of ECAL.  Six sectors of EC in CLAS12 will be used primarily for identification of electrons, photons (including $\pi^0\rightarrow 2\gamma$ decays), and neutrons.Both PCAL and ECAL are triangular-shaped sampling calorimeters. The calorimeter design uses a lead-scintillator sandwich consisting of alternating layers of 1-cm thick scintillators and ~2 mm thick lead sheets. At 11 GeV the total thickness corresponds to about 21 radiation lengths. Scintillator layers are grouped into three stereo views, called U, V, and W,  which are readout using photomultiplier tubes (PMT).  Specifications for each calorimeter are outlined below. 
+The CLAS12 EC package includes the legacy CLAS6 electromagnetic calorimeters (ECAL) and new pre-shower
+calorimeter (PCAL) modules installed just upstream of ECAL.  Six sectors of EC in CLAS12 will be used
+primarily for identification of electrons, photons (including $\pi^0\rightarrow 2\gamma$ decays), and
+neutrons.Both PCAL and ECAL are triangular-shaped sampling calorimeters. The calorimeter design uses
+a lead-scintillator sandwich consisting of alternating layers of 1-cm thick scintillators and ~2 mm thick
+lead sheets. At 11 GeV the total thickness corresponds to about 21 radiation lengths. Scintillator layers
+are grouped into three stereo views, called U, V, and W,  which are readout using photomultiplier tubes (PMT).
+Specifications for each calorimeter are outlined below. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -220,8 +228,10 @@ Figure~\ref{fc-layout-1} shows the locations of the HV mainframes for each of th
   \centering
   \includegraphics[width= 5in, keepaspectratio = true]{Sector6-electronics}
   \vspace{2mm}
-  \caption{Photograph of racks C1-6 through C1-10 (Sector 6) during cable installation.  The rack with no cables installed (C1-8)
-  houses four ECAL splitter panels (top), the FADC250 VXS crate (middle) and DSC2/TDC VXS crate (bottom).  The CAEN HV mainframe $\it{hvecal6}$ is at far left in rack C1-6, and the PCAL/FTOF mainframe $\it{hvftof6}$ is to the right in rack C1-7.}
+  \caption{Photograph of racks C1-6 through C1-10 (Sector 6) during cable installation.  The rack with
+    no cables installed (C1-8) houses four ECAL splitter panels (top), the FADC250 VXS crate (middle)
+    and DSC2/TDC VXS crate (bottom).  The CAEN HV mainframe $\it{hvecal6}$ is at far left in rack C1-6,
+    and the PCAL/FTOF mainframe $\it{hvftof6}$ is to the right in rack C1-7.}
   \label{fc-layout-2} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,8 +660,6 @@ on/off settings.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cabling Details}
 
-
-
 \subsubsection{Signal Cable Layout}
 \label{signal-conn}
 
@@ -663,7 +671,7 @@ parallel to the U,V,W strips within each module.  HV and RG-8 signal cables are 
 running parallel to the calorimeter sides.  RG-58 patch cables (16 ns delay) run from the PMT anode connector
 to the thicker and less flexible RG-8 cable.  At the other end of the RG-8, a second connection is made to
 RG-58 patch cables (16 ns delay) connected to LEMO inputs at the rear of the UVA 122B splitter panels.  These
-patch connections are illustrated by the photos in Figure~\ref{ecal-patch-cables}.
+patch connections are illustrated by the photos in Figures~\ref{ecal-patch-cables} and \ref{fc-layout-3}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -684,7 +692,7 @@ patch connections are illustrated by the photos in Figure~\ref{ecal-patch-cables
   \vspace{2mm}
   \caption{For ECAL two RG-58 16 ns patch cable connections are made to the RG-8 signal cable: at the PMT
     end and near the UVA 122B splitter panels at the electronic racks.  Left: Connections
-    made along the rail grating next to the PMTs.  Middle: Connection made beneath the floor cratings on
+    made along the rail grating next to the PMTs.  Middle: Connection made beneath the floor gratings on
     Levels 2 and 3 of the Forward Carriage.  Right: Connections made within the electronics racks on Level 1.}
 \label{ecal-patch-cables}
 \end{figure}
@@ -694,7 +702,9 @@ The U,V,W PMTs for the PCAL modules are mounted along the sides of each module
 (see Figures~\ref{pcal-pmts} and \ref{pcal-pmts-2}).  Due to geometry constraints the V,W PMTs for PCAL are located
 together on the same side (corresponding to V PMT side of the ECAL.)  For PCAL only the U PMTs and cable connections
 are accessible from the Forward Carriage decks.  Figure~\ref{pcal-pmts-3} shows a view of the PCAL U cable routing
-within the gap between adjcent ECAL modules, and Figure~\ref{pcal-pmts-4} shows the V,W cable routing for Sector 6.
+within the gap between adjacent ECAL modules, and Figure~\ref{pcal-pmts-4} shows the V,W cable routing for Sector 6.
+No patch cables are used for PCAL.  The RG-58 signal cables have a BNC connector on the PMT end and a
+LEMO connector on the splitter panel end.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -743,152 +753,155 @@ within the gap between adjcent ECAL modules, and Figure~\ref{pcal-pmts-4} shows 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{20.0cm}
-
-\caption{Electronics map for the input connections to the FTOF VME FADCs.}
-\label{ftof-fadc-map}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{20.0cm}
-\caption{Electronics map for the input connections to the FTOF VME discriminators.}
-\label{ftof-disc-map}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{20.0cm}
- 
-\caption{Electronics map for the input connections to the FTOF VME TDCs .}
-\label{ftof-tdc-map}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \subsubsection{HV Cable Layout}
 \label{hv-layout}
 
-HV cable connections to the rear of the mainframes are made using a JLAB built transition/distribution box with 48 SHV input connectors and two output cables each terminated with a 24-pin connector designed to mate with the receptacle on the A1535N cards (see Figure~\ref{fc-layout-3}).
+HV cables generally run parallel or along the same general path as the signal cables for both PCAL and ECAL.
+HV cable connections to the rear of the CAEN mainframes are made using a JLAB built transition/distribution
+box which has 48 SHV input connectors and two output cables each terminated with a 24-pin Radiall connector
+designed to mate with the input connector on the A1535N cards (see Figure~\ref{fc-layout-3}).
 
-Both signal and HV cables from the EC system pass under the floor gratings on Levels 2 and 3 and for Level 1
-cables are routed through openings in the ceiling.  For ECAL RG-8 signal cables the connection to BNC-Lemo transition cables
-are made under the grating near the racks containing the ECAL splitter panels (Figure~\ref{fc-layout-3}.)
+Both HV and signal cables from the EC system pass under the floor gratings on Levels 2 and 3.  For Level 1
+cables are routed through openings in the ceiling.  Connections to the BNC-Lemo transition cables used for the ECAL
+RG-8 cables are made under the grating near the racks containing the ECAL splitter panels.  A photo showing
+the floor grating removed is in Figure~\ref{fc-layout-3} (right).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width= 5in, keepaspectratio = true]{Cable-routing}
+  \includegraphics[width= 6in, keepaspectratio = true]{Cable-routing}
   \vspace{2mm}
-  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs of ECAL HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to the HV distribution box (right).}
+  \caption{Left: Rear of CAEN HV mainframe (top) showing installed HV cards.  At bottom are transition
+    boxes with SHV input connectors and red output cables which mate with the HV cards.  Right: Photographs
+    of ECAL HV/signal cable bundles underneath floor gratings (which are removed here). Removal of floor gratings
+    gives access to RG-8/RG-58 BNC/BNC connections visible at top.  Also visible are HV cable connections to
+    the HV distribution box (right).}
   \label{fc-layout-3} 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Signal Splitters and Cable Maps}
+\label{hv-layout}
 
+Both ECAL and PCAL rely on passive resistive splitters to distribute signals to the TDC and ADC
+VME/VXS crates.  The split ratio is 2:1 for PCAL (using the UVA122D model)  and 3:1 for ECAL
+(using the UVA122B model).  For both calorimeters the larger signal goes to the FADC modules.
+Each splitter panel contains 64 channels using four sub-modules with 16 channels each.  Thus PCAL,
+which has 192 PMTs per module, requires only 3 splitter panels and utilizes every channel. However ECAL,
+which has 216 PMTs per module (108 for EC inner and 108 for EC outer), requires four splitter panels,
+but does not utilize every channel.  For both ECAL and PCAL, the input mapping to the splitters
+is sequential (in ascending U,V,W PMT order).  For PCAL, there are no gaps, while for ECAL a gap
+is used to conveniently map the left and right halves of the splitters to EC inner and EC outer.  This
+is shown in Figure~\ref{ecal-pp-2}.  Note also that signal cables are mapped to the splitters in a
+vertical sequence rather than horizontal, in order to minimize patch cables crossing over each other
+in their path to the VME/VXS crate slots.
 
-The high voltage cables for each PMT run from the voltage divider to a local disconnect HV distribution
-box located behind the panel-2 arrays in each sector next to the signal cable local disconnect patch
-panels. Note that there are four HV distribution boxes for each sector, two for the left PMTs and two
-for the right PMTs of each sector. Fig.~\ref{ftof-hv-map} shows the layout of the two HV distribution 
-boxes for the left and right PMT HV connections. The output of each HV distribution box is a pair of
-35-ft-long multi-conductor cables, each containing 24-channels, with a Radiall connector to mate 
-with the HV A1535N board input connector. See Figs.~\ref{cable-types1} and \ref{cable-types2} in 
-Section~\ref{cable-connections} for schematics of the cable and connector types for each segment of the 
-HV connections from the voltage divider to the HV power supplies for the counters in FTOF panel-1a, 
-panel-1b, and panel-2. The HV power supply channel assignments for each sector are nominally given as 
-shown in Fig.~\ref{ftof-hvmap}.
+Mapping of patch cables from the splitter to electronics follows exactly the sequence used for the
+splitters, including the ECAL gaps.  These maps are illustrated for the PCAL FADC VXS crate and DSC/TDC VME crate in
+Figures~\ref{pcal-fadc-map} and Figures~\ref{pcal-disc-map}.  The corresponding ECAL maps are in
+Figures~\ref{ecal-fadc-map} and Figures~\ref{ecal-disc-map}.  Note these maps are also loaded into
+the CCDB (Calibration Commissioning Data Base) as translation tables  under the directory $\it{/daq/tt/ec}$.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{6.7cm}
-\begin{picture}(30,50) 
-%\put(45,-35)
-%{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{ftof-hv-map.pdf}}}
-\end{picture} 
-\caption{Mapping of the HV channel connections to the HV distribution boxes for each sector. Each
-sector is connected to four HV distribution boxes, two for the left side PMTs and two for the right
-side PMTs. Note: The box beam that supports the panel-2 arrays and the patch panels themselves is
-located under the second box.}
-\label{ftof-hv-map}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+HV cable maps are also sequential for both PCAL and ECAL and there are no gaps and no spare channels.
+The HV cable maps for PCAL and ECAL are shown in Figures~\ref{pcal-hv-map} and \ref{ecal-hv-map}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8.0cm}
-\begin{picture}(30,50) 
-%\put(-15,-85)
-%{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{ftof-hvmap.pdf}}}
-\end{picture} 
-\caption{HV mainframe FTOF channel assignments for each sector.}
-\label{ftof-hvmap}
+\vspace{2mm}
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{ecal-pp-2.png}
+\caption{Photo of ECAL UVA122B splitter panels.  LEMO inputs are in the rear.  LEMO outputs are used
+  for FADC connections and the mapping used for EC Inner is illustrated with the yellow overlay.  The 17-pin connector
+  is used for mini-coax connections to the DSC2 discriminators.  The split ratio is 3:1, with 3/4 going
+  to the FADC and 1/4 going to the DSC2.  The EC Outer mapping is identical.}
+\label{ecal-pp-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Altering Cable Maps}
 
 The nominal procedure if there is a problem with a VME electronics board is to replace the board
-with a spare unit. However, for testing purposes, it might be necessary to change a signal input
-at the FADC, discriminator, or TDC to an unused channel. This work must always be done in coordination
-with the DAQ system expert in order to update the channel map used as input to the translation 
-table. This operation is not something that is normally done and should not be attempted by shift
-workers or FTOF experts as it could lead to problems decoding the data.
+with a spare unit.  However, for testing purposes, it might be necessary to change a signal input
+at the FADC, discriminator, or TDC to an unused channel. For PCAL there are no unused channels,
+while for ECAL there are a total of eight unused channels for both FADCs and DSCs.  Utilizing
+unused channels for the TDCs is limited due to the use of ribbon cable.  Any remapping of channels
+must be done in coordination with the DAQ system expert in order to update the database translation 
+tables. This operation is not something that is normally done and should not be attempted by shift
+workers or EC experts as it could lead to problems decoding the data.
 
-Problems with channels within the HV system are more common issues as channels on the HV distribution
-box or on an A1535N card are reasonably common. The standard procedure when there is a problem with
-a CAEN HV board is to swap out the board (see Section~\ref{board-swap}). If there is a problem on the HV 
-distribution box on either the left or right side of a sector, there are six spare HV channels that 
-are available. These are detailed in Section~\ref{hv-layout}. If one of these spare channels is to be 
-used, the first step before disconnecting any system HV cables is to be sure that the channel HV is 
-turned off for the channel to be moved. The SHV cable can then be moved to one of the open connectors 
-on the HV distribution box shown in Fig.~\ref{ftof-hv-map}. In order to update the HV channels map, 
-contact the Slow Controls expert.
+Problems with channels within the HV system may arise due to connection failures at the 24 pin
+interface between the HV distribution box and the A1535N board, or failures of the board itself.
+The standard procedure when there is a problem with a CAEN HV board is to swap out the board
+(see Section~\ref{board-swap}).  As indicated there are no spare channels in either ECAL or PCAL.
+An unlikely possibility is failure of a single slot in the HV mainframe, which would require
+moving a HV board to an unused slot. This would require reprogramming the EPICS Slow Controls database
+to ensure smooth operation of the HV Control GUIs and should be done only in consultation with a
+Slow Controls expert. 
 
-\subsubsection{Cable Connections}
-\label{cable-connections}
-
-In order to better understand the signal and high voltage cabling scheme for the FTOF system,
-Figs.~\ref{cable-types1} and \ref{cable-types2} show for panel-1a, panel-1b, and panel-2 the cable 
-and connection types from the counter PMTs to the Forward Carriage electronics and power supplies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{8.5cm}
-\begin{picture}(30,50) 
-%\put(-5,-50)
-%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{cable-types1.pdf}}}
-\end{picture} 
-\caption{FTOF panel-1a and panel-2 HV and signal cable connections.}
-\label{cable-types1}
-\end{figure}
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}
+  \includegraphics[width=9in]{pcal-fadc-map}
+  \caption{Electronics map for the input connections to the PCAL VME FADCs.  Slots 11 and 12 are
+  reserved for the Virtual Trigger Processor (VTP).}
+  \label{pcal-fadc-map}
+\end{sidewaysfigure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{8.0cm}
-\begin{picture}(30,50) 
-%\put(-5,-35)
-%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{cable-types2.pdf}}}
-\end{picture} 
-\caption{FTOF panel-1b HV and signal cable connections.}
-\label{cable-types2}
-\end{figure}
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}
+  \includegraphics[width=9in]{pcal-disc-map}
+  \caption{Electronics map for the input connections to the PCAL VME discriminators. Twisted-pair ribbon
+  cables make the connections to the V1190 TDCs is slots 6 and 16.}
+  \label{pcal-disc-map}
+\end{sidewaysfigure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}
+  \includegraphics[width=9in]{ecal-fadc-map}
+  \caption{Electronics map for the input connections to the ECAL VME FADCs. Slots 11 and 12 are
+  reserved for the Virtual Trigger Processor (VTP).}
+  \label{ecal-fadc-map}
+\end{sidewaysfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vfil
-\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}
+  \includegraphics[width=9in]{ecal-disc-map}
+  \caption{Electronics map for the input connections to the ECAL VME discriminators.  Twisted-pair ribbon
+  cables make the connections to the V1190 TDCs is slots 6 and 16.}
+  \label{ecal-disc-map}
+\end{sidewaysfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}  \includegraphics[width=9in]{pcal-hv-map}
+\caption{HV mainframe PCAL channel assignments for each sector.}
+\label{pcal-hv-map}
+\end{sidewaysfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sidewaysfigure}[htbp]
+  \hspace{1cm}
+  \includegraphics[width=9in]{ecal-hv-map}
+\caption{HV mainframe ECAL channel assignments for each sector.}
+\label{ecal-hv-map}
+\end{sidewaysfigure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
 
 \subsection{System Failure Modes}
 \label{repairs}
 
-For the FTOF detector, there are a number of usual ``failure'' modes with which the system expert should
+For the EC detector, there are a number of usual ``failure'' modes with which the system expert should
 be familiar. These include the following:
 
 \begin{itemize}
@@ -940,86 +953,26 @@ adjustment of the HV settings. Of course, PMT gain issues typically lead to a re
 an increase of the HV. 
 \item DAQ Problems - the most common cause for an apparent gain shift in the ADC spectra for a counter is 
 due to problems with the FADC settings. Such problems can typically be diagnosed from pedestal shifts or 
-widened pedestals. The pedestals can be checked by taking FADC data in ``raw mode''. Note that as the
-panel-1a and panel-1b dynode signal used for the FADC inputs are bipolar pulses (see Section~\ref{pmt-signals}), 
-issues with shifts in the signal summing region can have a dramatic impact on the FADC spectra. 
-\item Bad Inverters - the panel-1b dynode signals, which are used for the input to the FADCs, are nominally
-positive polarity pulses that are sent through an inline inverter attached to the Forward Carriage patch
-panel (see Section~\ref{signal-conn}). These inverters occasionally go bad and can be diagnosed comparing 
-the signal on either side of the inverter. Bad inverters should be replaced with new spare inverters 
-contained in the FTOF storage cabinets on the upper level of the Pie Tower.
+widened pedestals. The pedestals can be checked by taking FADC data in ``raw mode''.
 \item Light Leak - it is possible that a gain shift can be due to hardware damage or a light leak on the 
-counter. Note that issues with hardware damage are less likely for the panel-1a and panel-1b counters as 
-they are buried between the LTCC/RICH detectors and the calorimeters. Of course, the panel-2 counters are 
-more exposed and hardware issues can either be explored by looking at signals or measuring dark currents 
-at the voltage dividers, the local disconnect patch panels, or the electronics patch panels. The panel-2 
-detectors themselves can be explored using access with manlifts as necessary, coordinating work through 
-the Hall~B Work Coordinator.
+counter.
 \end{itemize}
 
 \subsubsection{High PMT Dark Current}
 \label{high-current}
 
-High PMT dark currents can be seen in the channel scaler displays. The dark currents can be measured
-at either the local disconnect or the electronics patch panels. There are three likely causes for high 
-PMT dark currents:
-
-\begin{enumerate}
-\item Bad PMT - At times when a PMT goes bad, its dark current can increase. Typical FTOF PMT dark 
-currents are at the level of 50~nA or less. If a bad PMT has been identified, it can only be worked 
-on during designated FTOF servicing periods. However, the usual procedure is to leave the PMT 
-energized and live with the increased dark current unless the higher currents cause the HV supply 
-channel to trip. If the channel HV needs to be turned off, the logbook should be updated and the HV 
-setting configuration with the channel off should be saved as the nominal setting.
-\item Light Leak - A light leak in the counter wrapping will also lead to higher dark currents. The 
-issue of light leaks is not expected to be an issue for the panel-1a and panel-1b counters as they 
-are buried within the detectors on the Forward Carriage and ambient light levels are very low. For 
-the panel-2 counters, they are more exposed. Light leaks can be repaired during opportunities when 
-the Forward Carriage is moved away from the torus magnet.
-\item Reflective Layer Wrapping Problems (panel-1b only) - There is an issue with the wrapping of 
-the reflective layer on some of the panel-1b counters that has been seen to lead to ``super-hot'' PMTs, 
-with dark currents up to 100~$\mu$A. There are several PMTs that have a history of showing such high 
-currents, but occasionally a PMT that had been operating without issue, can suddenly show very large 
-currents. Sometimes the current draw will monotonically reduce over the period of several hours. These 
-PMTs will remain at low currents as long as the HV is not turned off. Sometimes, the currents remain 
-high regardless of how long they are energized. In such cases, judgment should be exercised as to 
-whether to leave the channel on or off. If the channel is turned off, the HV setting configuration 
-should be updated and saved.
-\end{enumerate}
-
 \subsubsection{Missing Anode or Dynode Signal}
 \label{missing}
 
-Occasionally a signal will disappear from FTOF monitoring plots. In such a situation, further
-investigation will be necessary. 
-
-\begin{itemize}
-\item If both anode and dynode signals are missing, this could be due either to a problem with the HV, 
-the VME crate (which would affect and entire board or entire sector), or the PMT itself. If the problem
-is with the HV board, it should be replaced as detailed in Section~\ref{board-swap}. PMT problems are
-typically apparent as the nominal PMT signal (see Fig.~\ref{pmt-pulses}) is absent, severely distorted, 
-or replaced by high frequency noise.
-\item If one signal is present and the other is missing, this could be a bad cable connection anywhere
-from the voltage divider to the input to the electronics. The way to diagnose is to use an
-oscilloscope to look at the signal at each accessible junction point. If the signal is missing from the
-monitoring data but is seen to be good at the input to the FADC and TDC, contact the DAQ expert for
-help.
-\item If the dynode signal is missing from panel-1b, this is likely caused by a bad signal inverter
-(see Section~\ref{gain-shift}).
-\item If either the anode or dynode signal is missing from a panel-1a or panel-2 PMT and the cabling
-checks out, the problem is likely due to a bad component on the voltage divider. In such a case the
-channel must be turned off (with HV channel parameters updated - see Section~\ref{save-restore}). 
-Repairs can only be made during a designated FTOF repair cycle.
-\end{itemize}
 
 \subsubsection{Bad PMT}
 \label{bad-pmt}
 
 One of the most common failure modes of a PMT is a gradual loss of gain over the period of
 several years. This can be compensated by adjusting the HV to maintain the gain setting. The
-PMTs used in the FTOF system have maximum voltage ratings of -2500~V for the PMTs in panel-1a
-and panel-2, and -2000~V for the PMTs in panel-1b. Once the PMT HV is set to its maximum value
-and the gain falls below the nominal setting, the PMT should be flag for replacement during
+PMTs used in the EC system have maximum voltage ratings of -2500~V for the ECAL PMTs and
+-1000~V for the PCAL PMTs.  Once the PMT HV is set to its maximum value
+and the gain falls below the nominal setting, the PMT should be flagged for replacement during
 the next servicing opportunity.
 
 \subsubsection{Readout Electronics Issues}
@@ -1039,22 +992,13 @@ Slow Controls system expert.
 
 \subsection{Detector Repairs and Servicing}
 
-Repairs and servicing on the FTOF detectors themselves, specifically panel-1a and panel-1b, are 
-highly involved and inherent risky operations. As the counters themselves are structurally robust, 
-no mechanical problems are expected with them during the lifetime of CLAS12. However, PMTs do 
-occasionally go bad due to gain reductions as a function of time and need to be replaced. In addition, 
-voltage dividers can also sometimes go bad due to failed components. In order to replace a PMT or a 
-voltage divider on either panel-1b or panel-1a, the entire panels have to be removed from the Forward 
-Carriage and placed on the floor of Hall~B. This involves removal of the associated LTCC and either 
-one or both FTOF arrays depending on which array needs servicing. Such an operation would never be 
-done to repair a single bad element due to the effort and the risk involved. Of course, PMT and/or 
-divider replacement for the panel-2 counters can be performed in situ using a ladder or a manlift 
-(depending on the PMT location). This work will be carried out either by the FTOF Group Leader or 
-the Hall~B technicians during a scheduled hall access. As for panel-1b and panel-1a, mechanical 
-problems with the scintillation counters themselves in panel-2 are not expected to be necessary 
-during the lifetime of CLAS12.
+Repairs and servicing of the physical structure of the EC detectors is limited to maintaining
+light-tight tape seals along the known openings and sheet metal seams.  Black 3M tape is visible
+in numerous locations and usually indicates where energized PMTs were able to detect significant
+light leaks.  These seals must be maintained to prevent excessive count rates in the PMTs.  Repair
+and replacement of defective PMTs and HV dividers will be necessary as time passes. 
 
-All FTOF detector repairs will be organized through the FTOF Group Leader in conjunction with the
+All EC detector repairs will be organized through the EC Group Leader in conjunction with the
 Hall~B Work Coordinator to be scheduled during a planned major down time for Hall~B.
 
 \clearpage
@@ -1064,24 +1008,24 @@ Hall~B Work Coordinator to be scheduled during a planned major down time for Hal
 
 \section{Documentation}
 
-All current documentation for the FTOF system is located on the official FTOF web page~\cite{ftof-web}. 
+All current documentation for the EC system is located on the official EC web page~\cite{ecal-web}. 
 A number of basic subsystem documents can be found there including:
 
 \begin{itemize}
-\item FTOF System Operations Manual (this document)
-\item FTOF Geometry Document
-\item FTOF Calibration Constants
-\item FTOF Monte Carlo Simulation Details
-\item FTOF Reconstruction Document
+\item EC System Operations Manual (this document)
+\item EC Geometry Document
+\item EC Calibration Constants
+\item EC Monte Carlo Simulation Details
+\item EC Reconstruction Document
 \item Assorted photographs of the detector hardware
 \end{itemize}
 
-\section{FTOF Authorized Personnel}
+\section{EC Authorized Personnel}
 \label{personnel}
 
 Beyond turning on/off the EC system HV and monitoring the system scalers, all other operations and
 repairs are only to be carried out by the list of authorized personnel shown in Table~\ref{expert-list}.
-The list of authorized personnel for FTOF can only be modified by FTOF Group Leader.
+The list of authorized personnel for EC can only be modified by the EC Group Leader.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
@@ -1121,11 +1065,9 @@ appropriate using the same approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8.0cm}
-\begin{picture}(30,50) 
-%\put(5,305)
-%{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642,angle=-90]{inventory.pdf}}}
-\end{picture} 
+  \centering
+  \includegraphics[width= 7in, keepaspectratio = true]{inventory}
+  \vspace{2mm}
 \caption{Hall~B equipment database web page.}
 \label{inventory}
 \end{figure}
@@ -1139,15 +1081,15 @@ appropriate using the same approach.
 \begin{thebibliography}{99}
 
 \bibitem{e-log}
-Hall~B Electronic Logbook: https://logbooks.jlab.org/book/hblog
+  Hall~B Electronic Logbook: https://logbooks.jlab.org/book/hblog
 
 \bibitem{beast}
-Hall~B BEAST alarm handler: \\
-https://clasweb.jlab.org/wiki/index.php/Slow\_Control\_Alarms
+  Hall~B BEAST alarm handler: \\
+  https://clasweb.jlab.org/wiki/index.php/Slow\_Control\_Alarms
 
 \bibitem{fcmon}
   FCMON:\\
-https://github.com/forcar/fc/wiki/FCMON  
+  https://github.com/forcar/fc/wiki/FCMON  
 
 \bibitem{ecal-web}
   EC web page: \\
