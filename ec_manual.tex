@@ -90,10 +90,10 @@ Specifications for each calorimeter are outlined below.
 {\bf Parameter}        & {\bf Design Value} \\ \hline \hline
 {\bf PCAL}         &              \\ \hline 
 Calorimeter type   & Sampling, lead-scintillator \\ \hline
-Number of modules  & 6 \\ \hline
+Number of modules  & 6  \\ \hline
 Module shape and dimensions & Triangle, base 394.3 cm height 385.3 cm \\ \hline
 Total coverage area      &  45 m$^2$ \\ \hline
-Distance from Target & 7 m \\ \hline
+Distance from Target & 7.0 m \\ \hline
 Angular coverage   & $\theta$: 5$^\circ$ $\to$ 35$^\circ$,$\phi$: 50\% at 5$^\circ$ $\to$ 85\% at 35$^\circ$ \\ \hline
 Lead sheets & 2.2 mm thick (two pieces) \\ \hline
 Number of scintillator layers & 15 per module \\ \hline
@@ -120,21 +120,21 @@ Light yield & 11-12 photo e-/MeV \\ \hline
 {\bf Parameter}        & {\bf Design Value} \\ \hline \hline
 {\bf ECAL}         &              \\ \hline
 Calorimeter type   & Sampling, lead-scintillator \\ \hline
-Number of modules  & 6 \\ \hline
+Number of modules  & 6 (each module has inner/outer segmentation and readout)\\ \hline
 Module shape and dimensions & Triangle, base 420 cm height 388.8 cm \\ \hline
 Total Coverage Area      & 49 m$^2$ \\ \hline
-Distance from Target & 7.21723 m (target center to upstream face) \\ \hline
+Distance from Target & 7.5 m (target center to upstream face) \\ \hline
 Angular Coverage   & $\theta$: 5$^\circ$ $\to$ 35$^\circ$,$\phi$: 50\% at 5$^\circ$ $\to$ 85\% at 35$^\circ$ \\ \hline
 Lead sheets & 2.387 mm thick (single piece)\\ \hline
 Number of scintillator layers & 39 per module (15 inner, 24 outer) \\ \hline
 Number of lead sheets  & 38 per module \\ \hline
-Number of stereo readout views & 3 (5 scintillator layers per view) \\ \hline
+Number of stereo readout views & 3 (5/8 scintillator layers per view for inner/outer) \\ \hline
 Scintillator material & BC-412\\ \hline
 Scintillator cladding & None. Teflon film (0.00762 cm) between layers. \\ \hline
 Scintillator strip dimensions & 1 x 10.0 x 15-420 cm \\ \hline
 Scintillator readout & BCF98 3mm cladded optical fiber \\ \hline
 Scintillators/module & U:36 V:36 W:36 \\ \hline
-Number of fibers & 22 fibers/PMT, 110(176) per inner(outer) view \\ \hline
+Number of fibers & 22 fibers per PMT, 110/176 per inner/outer view \\ \hline
 Number of readout channels & 216 per module \\ \hline
 Readout PMTs & Phillips XP2262 and EMI 9954 \\ \hline
 Light yield & 3-4 photo e-/MeV \\ \hline \hline
@@ -199,7 +199,7 @@ Note that ``South'' refers to beam left and ``North'' to beam right (closer to t
 
 Figure~\ref{fc-layout-1} shows the Forward Carriage rack locations for the ECAL VME electronics and signal cable patch 
 panels.  Note the rack layout for beam left is a mirror image of the layout for beam right.  Also the Level 1 rack layout
-is different due to an altername cable routing (discussed later).  A photograph of the Sector 6 rack installation is
+is different due to an alternate cable routing (discussed later).  A photograph of the Sector 6 rack installation is
 shown in Figure~\ref{fc-layout-2}.
 
 The HV power supplies for all PMTs in each ECAL sector are either CAEN 1527LC mainframes or CAEN 4527 mainframes 
@@ -304,10 +304,13 @@ or contacting the appropriate on-call personnel. Instructions and details on the
 are given in Ref.~\cite{beast}.
 
 For the EC system, the only element of the system monitored by the alarm handler is the HV system.
-Any time a channel trips off an alarm will sound. The alarm handler will identify the specific
-channel (or channels) that have tripped. These channels can be reset either through the alarm handler
-or through the nominal EC HV control screens. These channels should be reset only after ensuring
-that whatever condition caused the trip (e.g. bad beam conditions) has been addressed.
+Whenever any PMT HV either trips off or changes beyond a pre-determined window an alarm will sound.
+The alarm handler will identify the specific channel (or channels) causing the alarm. These channels can
+be reset either through the alarm handler or through the nominal EC HV control screens. These channels
+should be reset only after identifying the cause of the alarm.  Beam-current related trips can be reset
+immediately once beam condistions have stabilized.  Instability in the HV due to a malfunction in the PMT,
+HV divider or HV power supply should be diagnosed and noted in the e-log so repairs can be made at
+the next Hall entry.  
 
 \subsection{High Voltage Controls}
 \label{hv-control}
@@ -579,7 +582,7 @@ on using EC calibration, including tutorials for using the code, are included on
 \label{hv-parms}
 
 The CS-Studio program is used to monitor the HV settings of the EC system and to toggle the HV off
-and on for individual or multiple channels in the system.  As discussed in Section, there is also
+and on for individual or multiple channels in the system.  As discussed in Section~\ref{hv-control}, there is also
 the option to adjust settings channel-by-channel using the HV ``expert'' screen shown in
 Fig.~\ref{ecal-screen3}. Here the parameters, $V_{set}$, $I_{set}$, $V_{max}$, and the HV ramp up and
 ramp down rates, can be entered directly into the parameter fields.  This ``expert'' screen
@@ -604,7 +607,7 @@ The nominal settings for the HV channel parameters are as follows:
 \item HV values (PCAL): Typically in the range from -800~V to -950~V
 \item HV values (ECAL): Typically in the range from -1500~V to -2000~V
 \item HV values (PCAL): Typically in the range from -800~V to -950~V
-\item HV$_{max}$ values: PCAL: -1000~V, ECAL: -2500~V
+\item HV$_{max}$ values: PCAL: -1100~V, ECAL: -2500~V
 \item i$_{max}$ values: 500~$\mu$A
 \item HV ramp up rate: 50~V/s
 \item HV ramp down rate: 100~V/s
@@ -908,7 +911,7 @@ be familiar. These include the following:
 \item Replacing a HV board (see Section~\ref{board-swap}).
 \item Sudden ADC gain shift (see Section~\ref{gain-shift}).
 \item High PMT dark current (see Section~\ref{high-current}).
-\item Missing anode or dynode signal (see Section~\ref{missing}).
+\item Missing anode signal (see Section~\ref{missing}).
 \item Bad PMT (see Section~\ref{bad-pmt}).
 \item Readout electronics issues (see Section~\ref{readout-issues}).
 \item IOC issues (see Section~\ref{ioc-issues}).
@@ -971,7 +974,7 @@ counter.
 One of the most common failure modes of a PMT is a gradual loss of gain over the period of
 several years. This can be compensated by adjusting the HV to maintain the gain setting. The
 PMTs used in the EC system have maximum voltage ratings of -2500~V for the ECAL PMTs and
--1000~V for the PCAL PMTs.  Once the PMT HV is set to its maximum value
+-1100~V for the PCAL PMTs.  Once the PMT HV is set to its maximum value
 and the gain falls below the nominal setting, the PMT should be flagged for replacement during
 the next servicing opportunity.
 
